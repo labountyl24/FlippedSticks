@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipped Sticks — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'DM Sans',sans-serif;background:#f0f5f1;min-height:100vh;color:#1a5c38;}
+:root{--mg:#1a5c38;--lg:#2d8a56;--pale:#d8f3dc;--border:#d0eadb;--muted:#5a7d66;--faint:#78a088;}
+header{background:linear-gradient(135deg,#0d3320,#1a5c38,#2d8a56);padding:16px 24px;border-bottom:3px solid #45a86e;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+header h1{font-size:20px;font-weight:800;color:#fff;}header span{font-size:12px;color:#98d9aa;}
+.tabs{display:flex;gap:4px;margin:20px 24px 0;}
+.tab{padding:10px 20px;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;background:#fff;color:var(--muted);border:1px solid var(--border);border-bottom:none;}
+.tab.act{background:var(--mg);color:#fff;}
+.panel{max-width:1200px;margin:0 auto;padding:0 24px 40px;}
+.card{background:#fff;border-radius:0 12px 12px 12px;border:1px solid var(--border);padding:24px;margin-bottom:20px;}
+.card h3{font-size:16px;margin-bottom:16px;color:var(--mg);}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;}
+.tbl th{background:var(--mg);color:#fff;padding:10px 8px;text-align:left;font-weight:600;position:sticky;top:0;}
+.tbl td{padding:8px;border-bottom:1px solid #e8f0eb;vertical-align:middle;}
+.tbl tr:hover{background:#f7fbf8;}
+.tbl img{width:40px;height:40px;object-fit:cover;border-radius:4px;}
+.act-btn{padding:4px 10px;border-radius:6px;border:none;cursor:pointer;font-size:11px;font-weight:600;font-family:inherit;margin:2px;}
+.act-edit{background:var(--pale);color:var(--mg);}.act-del{background:#fef2f2;color:#991b1b;}
+.act-edit:hover{background:#b7e4c7;}.act-del:hover{background:#fca5a5;}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:700px){.form-row{grid-template-columns:1fr;}}
+.form-row label{font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;}
+.form-row input,.form-row select,.form-row textarea{width:100%;padding:8px 10px;border-radius:6px;border:1px solid var(--border);font-size:13px;font-family:inherit;}
+.form-row textarea{resize:vertical;}
+.save-btn{background:var(--mg);color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px;}.save-btn:hover{background:var(--lg);}
+.cancel-btn{background:#e8f0eb;color:var(--muted);border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px;margin-left:8px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:20px;}
+.stat{background:#f7fbf8;border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;}
+.stat .num{font-size:22px;font-weight:800;color:var(--mg);}.stat .lbl{font-size:11px;color:var(--faint);margin-top:2px;}
+.msg{padding:12px 16px;border-radius:8px;font-size:13px;margin-bottom:16px;display:none;}
+.msg-ok{background:#d8f3dc;color:#1a5c38;border:1px solid #98d9aa;}
+.msg-err{background:#fef2f2;color:#991b1b;border:1px solid #fca5a5;}
+.order-card{background:#f7fbf8;border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;}
+.order-card h4{font-size:14px;color:var(--mg);margin-bottom:4px;}
+.order-meta{font-size:12px;color:var(--faint);margin-bottom:8px;}
+.order-items{font-size:12px;color:var(--muted);line-height:1.6;}
+.order-total{font-weight:700;font-size:14px;color:var(--mg);margin-top:6px;}
+.status-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;}
+.status-pending{background:#fef3c7;color:#92400e;}.status-paid{background:#d8f3dc;color:#1a5c38;}.status-shipped{background:#e8f4fd;color:#1a5078;}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>🏌️ Flipped Sticks Admin</h1><span>Inventory & Order Management</span></div>
+  <a href="index.html" style="color:#98d9aa;font-size:12px;text-decoration:none">← Back to Shop</a>
+</header>
+<div class="tabs">
+  <button class="tab act" onclick="showTab('inv')">📦 Inventory</button>
+  <button class="tab" onclick="showTab('orders')">📋 Orders</button>
+  <button class="tab" onclick="showTab('add')">➕ Add Item</button>
+</div>
+<div class="panel">
+  <div class="msg msg-ok" id="msg-ok"></div>
+  <div class="msg msg-err" id="msg-err"></div>
+
+  <!-- INVENTORY TAB -->
+  <div class="card" id="tab-inv">
+    <h3>Current Inventory</h3>
+    <div class="stat-grid" id="stats"></div>
+    <div style="overflow-x:auto">
+      <table class="tbl" id="inv-table">
+        <thead><tr><th>Img</th><th>Brand</th><th>Name</th><th>Type</th><th>Hand</th><th>Cond</th><th>Price</th><th>Qty</th><th>Actions</th></tr></thead>
+        <tbody id="inv-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ORDERS TAB -->
+  <div class="card" id="tab-orders" style="display:none">
+    <h3>Recent Orders</h3>
+    <div id="orders-list"></div>
+  </div>
+
+  <!-- ADD/EDIT TAB -->
+  <div class="card" id="tab-add" style="display:none">
+    <h3 id="form-title">Add New Item</h3>
+    <input type="hidden" id="edit-id">
+    <div class="form-row">
+      <div><label>Brand *</label><input id="f-brand" placeholder="Taylormade"></div>
+      <div><label>Name *</label><input id="f-name" placeholder="Spider Tour X 34in"></div>
+      <div><label>Type *</label><select id="f-type">
+        <option>Putter</option><option>Driver</option><option>Irons Set</option><option>Wedge</option><option>Fairway Wood</option>
+        <option>Hybrid</option><option>Driver Shaft</option><option>Shaft</option><option>Putter Shaft</option>
+        <option>Headcover</option><option>Golf Bag</option><option>Golf Set</option><option>Driving Iron</option><option>Single Iron</option>
+      </select></div>
+    </div>
+    <div class="form-row">
+      <div><label>Hand</label><select id="f-hand"><option>RH</option><option>LH</option></select></div>
+      <div><label>Condition Badge</label><select id="f-cond"><option value="">None</option><option>New</option><option>9/10</option><option>8/10</option></select></div>
+      <div><label>Price ($) *</label><input id="f-price" type="number" placeholder="275"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Quantity</label><input id="f-qty" type="number" value="1" min="1"></div>
+      <div><label>Photo URL</label><input id="f-img" placeholder="https://i.imgur.com/..."></div>
+      <div><label>Notes</label><input id="f-notes" placeholder="9/10 cond, custom grip"></div>
+    </div>
+    <button class="save-btn" onclick="saveItem()">Save Item</button>
+    <button class="cancel-btn" onclick="clearForm()">Cancel</button>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = "https://izmgscqvoiqjadqerazo.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6bWdzY3F2b2lxamFkcWVyYXpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDE5ODgsImV4cCI6MjA4OTUxNzk4OH0.IoxhwUABl-AbRhZl6iJqQX0BzUPQi54jwS86rdX3z3g";
+
+const SB = {
+  headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' },
+  async get(table, q='') { return (await fetch(`${SUPABASE_URL}/rest/v1/${table}?${q}`, { headers: this.headers })).json(); },
+  async post(table, data) { return (await fetch(`${SUPABASE_URL}/rest/v1/${table}`, { method:'POST', headers:{...this.headers,'Prefer':'return=representation'}, body:JSON.stringify(data) })).json(); },
+  async patch(table, id, data) { return (await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, { method:'PATCH', headers:{...this.headers,'Prefer':'return=minimal'}, body:JSON.stringify(data) })).ok; },
+  async del(table, id) { return (await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, { method:'DELETE', headers:this.headers })).ok; }
+};
+
+const $=id=>document.getElementById(id);
+function fmt(n){return"$"+n.toLocaleString();}
+
+function showTab(t) {
+  ['inv','orders','add'].forEach(x => { $(('tab-'+x)).style.display = x===t ? 'block' : 'none'; });
+  document.querySelectorAll('.tab').forEach((el,i) => el.classList.toggle('act', ['inv','orders','add'][i]===t));
+  if (t==='inv') loadInv();
+  if (t==='orders') loadOrders();
+  if (t==='add') { $('form-title').textContent='Add New Item'; $('edit-id').value=''; }
+}
+
+function showMsg(type, text) {
+  const el = $('msg-'+type); el.textContent=text; el.style.display='block';
+  setTimeout(()=>{ el.style.display='none'; }, 4000);
+}
+
+async function loadInv() {
+  const items = await SB.get('inventory', 'order=created_at.desc');
+  const active = items.filter(i=>i.qty>0 && i.active);
+  const totalVal = active.reduce((s,i)=>s+i.price*i.qty,0);
+  const totalItems = active.reduce((s,i)=>s+i.qty,0);
+
+  $('stats').innerHTML = `
+    <div class="stat"><div class="num">${active.length}</div><div class="lbl">Unique Products</div></div>
+    <div class="stat"><div class="num">${totalItems}</div><div class="lbl">Total Units</div></div>
+    <div class="stat"><div class="num">${fmt(totalVal)}</div><div class="lbl">Inventory Value</div></div>
+    <div class="stat"><div class="num">${items.filter(i=>i.qty===0).length}</div><div class="lbl">Sold Out</div></div>
+  `;
+
+  $('inv-body').innerHTML = items.map(i => {
+    const imgCell = i.img ? `<img src="${i.img}" alt="">` : '<span style="color:#ccc">—</span>';
+    const qtyStyle = i.qty === 0 ? 'color:#cc6666;font-weight:700' : i.qty <= 2 ? 'color:#dc6b4a;font-weight:600' : '';
+    const rowStyle = i.qty === 0 ? 'opacity:0.5;' : '';
+    return `<tr style="${rowStyle}"><td>${imgCell}</td><td style="font-weight:600">${i.brand}</td><td>${i.name}</td><td>${i.type}</td><td>${i.hand}</td><td>${i.cond||'—'}</td><td style="font-weight:700">${fmt(i.price)}</td><td style="${qtyStyle}">${i.qty}</td><td><button class="act-btn act-edit" onclick="editItem(${i.id})">Edit</button><button class="act-btn act-del" onclick="delItem(${i.id},'${i.brand} ${i.name}')">Delete</button></td></tr>`;
+  }).join('');
+}
+
+async function loadOrders() {
+  const orders = await SB.get('orders', 'order=created_at.desc&limit=50');
+  if (!orders.length) { $('orders-list').innerHTML='<p style="color:var(--faint);padding:20px">No orders yet.</p>'; return; }
+  $('orders-list').innerHTML = orders.map(o => {
+    const date = new Date(o.created_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'});
+    const sc = o.status==='paid'?'status-paid':o.status==='shipped'?'status-shipped':'status-pending';
+    const items = (o.items||[]).map(i=>i.brand+' '+i.name+(i.qty>1?' ×'+i.qty:'')+' — '+fmt(i.price*i.qty)).join('<br>');
+    return `<div class="order-card"><div style="display:flex;justify-content:space-between;align-items:start"><div><h4>${o.customer_name}</h4><div class="order-meta">${o.customer_email} · ${o.customer_phone||''} · ${o.method} · ${date}</div></div><div><span class="status-badge ${sc}">${o.status}</span><select onchange="updateOrderStatus(${o.id},this.value)" style="margin-left:8px;font-size:11px;padding:2px 4px;border-radius:4px;border:1px solid var(--border)"><option ${o.status==='pending'?'selected':''}>pending</option><option ${o.status==='paid'?'selected':''}>paid</option><option ${o.status==='shipped'?'selected':''}>shipped</option><option ${o.status==='completed'?'selected':''}>completed</option></select></div></div>${o.notes?'<div style="font-size:11px;color:#dc6b4a;margin-bottom:4px">Note: '+o.notes+'</div>':''}<div class="order-items">${items}</div><div class="order-total">Total: ${fmt(o.total)}</div></div>`;
+  }).join('');
+}
+
+async function updateOrderStatus(id, status) {
+  await SB.patch('orders', id, { status });
+  showMsg('ok', 'Order status updated to: ' + status);
+  loadOrders();
+}
+
+async function editItem(id) {
+  showTab('add');
+  $('form-title').textContent = 'Edit Item';
+  const items = await SB.get('inventory', 'id=eq.'+id);
+  if (!items.length) return;
+  const i = items[0];
+  $('edit-id').value = i.id;
+  $('f-brand').value = i.brand; $('f-name').value = i.name; $('f-type').value = i.type;
+  $('f-hand').value = i.hand; $('f-cond').value = i.cond||''; $('f-price').value = i.price;
+  $('f-qty').value = i.qty; $('f-img').value = i.img||''; $('f-notes').value = i.notes||'';
+}
+
+async function saveItem() {
+  const brand=$('f-brand').value.trim(), name=$('f-name').value.trim(), price=parseInt($('f-price').value);
+  if(!brand||!name||!price){showMsg('err','Brand, name, and price are required.');return;}
+  const data = {
+    brand, name, type:$('f-type').value, hand:$('f-hand').value,
+    cond:$('f-cond').value, price, qty:parseInt($('f-qty').value)||1,
+    img:$('f-img').value.trim(), notes:$('f-notes').value.trim(), active:true
+  };
+  const editId = $('edit-id').value;
+  if (editId) {
+    await SB.patch('inventory', editId, data);
+    showMsg('ok', 'Item updated: ' + brand + ' ' + name);
+  } else {
+    await SB.post('inventory', data);
+    showMsg('ok', 'Item added: ' + brand + ' ' + name);
+  }
+  clearForm(); showTab('inv');
+}
+
+async function delItem(id, name) {
+  if(!confirm('Delete "'+name+'"? This cannot be undone.')) return;
+  await SB.del('inventory', id);
+  showMsg('ok', 'Deleted: ' + name);
+  loadInv();
+}
+
+function clearForm() {
+  $('edit-id').value=''; $('f-brand').value=''; $('f-name').value=''; $('f-type').value='Putter';
+  $('f-hand').value='RH'; $('f-cond').value=''; $('f-price').value=''; $('f-qty').value='1';
+  $('f-img').value=''; $('f-notes').value=''; $('form-title').textContent='Add New Item';
+}
+
+loadInv();
+</script>
+</body>
+</html>
