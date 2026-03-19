@@ -120,7 +120,7 @@ header h1{font-size:20px;font-weight:800;color:#fff;}header span{font-size:12px;
     <div class="stat-grid" id="sold-stats"></div>
     <div style="overflow-x:auto">
       <table class="tbl">
-        <thead><tr><th>Date</th><th>Customer</th><th>Items</th><th>Method</th><th>Total</th><th>Status</th></tr></thead>
+        <thead><tr><th>Date/Year</th><th>Customer</th><th>Items</th><th>Method</th><th>Cost</th><th>Sale</th><th>Profit</th><th>Status</th></tr></thead>
         <tbody id="sold-body"></tbody>
       </table>
     </div>
@@ -352,7 +352,8 @@ async function markPaid(orderId) {
 async function cancelOrder(orderId) {
   if (!confirm('Cancel this order? Items will remain in stock.')) return;
   await SB.patch('orders', orderId, { status: 'cancelled' });
-  showMsg('ok', 'Order cancelled. No stock changes.');
+  showMsg('ok', 'Order cancelled. Switched to Cancelled view.');
+  $('order-filter').value = 'cancelled';
   loadOrders();
 }
 
@@ -363,43 +364,34 @@ async function updateOrderStatus(id, status) {
 }
 
 // ── SALES LOG ────────────────────────────────
+function getOrderCost(o) {
+  let cost = 0;
+  for (const item of (o.items||[])) {
+    if (item.cost) { cost += item.cost * item.qty; }
+    else {
+      const inv = allItems.find(i => i.id === item.id);
+      if (inv && inv.cost) cost += inv.cost * item.qty;
+    }
+  }
+  return cost;
+}
+
 async function loadSalesLog() {
   if (!allItems.length) allItems = await SB.get('inventory', 'order=price.desc');
   const orders = await SB.get('orders', 'status=in.(paid,shipped,completed)&order=created_at.desc');
   const totalRevenue = orders.reduce((s,o) => s + o.total, 0);
   const totalOrders = orders.length;
-  const totalItems = orders.reduce((s,o) => s + (o.items||[]).reduce((ss,i) => ss+i.qty, 0), 0);
+  const totalItemCount = orders.reduce((s,o) => s + (o.items||[]).reduce((ss,i) => ss+i.qty, 0), 0);
+  const totalCost = orders.reduce((s,o) => s + getOrderCost(o), 0);
 
-  let totalCost = 0;
-  for (const o of orders) {
-    for (const item of (o.items||[])) {
-      if (item.cost) { totalCost += item.cost * item.qty; }
-      else {
-        const inv = allItems.find(i => i.id === item.id);
-        if (inv && inv.cost) totalCost += inv.cost * item.qty;
-      }
-    }
-  }
-
-  // Load expenses for net profit
   const expenses = await SB.get('expenses', '');
   const totalExpenses = expenses.reduce((s,e) => s + parseFloat(e.cost||0), 0);
   const grossProfit = totalRevenue - totalCost;
   const netProfit = grossProfit - totalExpenses;
 
-  // Year breakdown
-  const byYear = {};
-  orders.forEach(o => {
-    const y = o.year_sold || new Date(o.created_at).getFullYear();
-    if (!byYear[y]) byYear[y] = {rev:0, count:0, items:0};
-    byYear[y].rev += o.total;
-    byYear[y].count++;
-    byYear[y].items += (o.items||[]).reduce((s,i)=>s+i.qty,0);
-  });
-
   $('sold-stats').innerHTML = `
     <div class="stat"><div class="num">${totalOrders}</div><div class="lbl">Orders</div></div>
-    <div class="stat"><div class="num">${totalItems}</div><div class="lbl">Items Sold</div></div>
+    <div class="stat"><div class="num">${totalItemCount}</div><div class="lbl">Items Sold</div></div>
     <div class="stat"><div class="num">${fmt(totalRevenue)}</div><div class="lbl">Revenue</div></div>
     <div class="stat"><div class="num">${fmt(totalCost)}</div><div class="lbl">COGS</div></div>
     <div class="stat"><div class="num" style="color:${grossProfit>=0?'var(--mg)':'#cc6666'}">${fmt(grossProfit)}</div><div class="lbl">Gross Profit</div></div>
@@ -413,11 +405,16 @@ async function loadSalesLog() {
     const items = (o.items||[]).map(i => i.brand+' '+i.name+(i.qty>1?' ×'+i.qty:'')).join(', ');
     const sc = o.status==='paid'?'status-paid':o.status==='shipped'?'status-shipped':'status-paid';
     const customer = o.customer_name === 'Historical' ? '<span style="color:var(--faint);font-style:italic">Historical</span>' : o.customer_name;
-    return `<tr><td>${date}</td><td>${customer}</td><td style="font-size:11px">${items}</td><td>${o.method||''}</td><td style="font-weight:700">${fmt(o.total)}</td><td><span class="status-badge ${sc}">${o.status}</span></td></tr>`;
+    const oCost = getOrderCost(o);
+    const oProfit = o.total - oCost;
+    const profitColor = oProfit > 0 ? '#1a5c38' : oProfit < 0 ? '#cc6666' : 'var(--faint)';
+    const costCell = oCost > 0 ? fmt(oCost) : '<span style="color:#ccc">—</span>';
+    const profitCell = oCost > 0 ? `<span style="color:${profitColor};font-weight:700">${fmt(oProfit)}</span>` : '<span style="color:#ccc">—</span>';
+    return `<tr><td>${date}</td><td>${customer}</td><td style="font-size:11px">${items}</td><td>${o.method||''}</td><td style="font-size:11px;color:var(--faint)">${costCell}</td><td style="font-weight:700">${fmt(o.total)}</td><td>${profitCell}</td><td><span class="status-badge ${sc}">${o.status}</span></td></tr>`;
   }).join('');
 
   if (!orders.length) {
-    $('sold-body').innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--faint);padding:24px">No sales yet.</td></tr>';
+    $('sold-body').innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--faint);padding:24px">No sales yet.</td></tr>';
   }
 }
 
