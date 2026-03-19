@@ -120,12 +120,11 @@ header h1{font-size:20px;font-weight:800;color:#fff;}header span{font-size:12px;
     <div class="form-row">
       <div><label>My Cost ($)</label><input id="f-cost" type="number" placeholder="150"></div>
       <div><label>Quantity</label><input id="f-qty" type="number" value="1" min="1"></div>
-      <div><label>Photo URL</label><input id="f-img" placeholder="https://i.imgur.com/..."></div>
+      <div><label>Notes</label><input id="f-notes" placeholder="9/10 cond, custom grip"></div>
     </div>
     <div class="form-row">
-      <div><label>Notes</label><input id="f-notes" placeholder="9/10 cond, custom grip"></div>
-      <div></div>
-      <div></div>
+      <div><label>Main Photo URL</label><input id="f-img" placeholder="https://i.imgur.com/main.jpg"></div>
+      <div style="grid-column:span 2"><label>Additional Photos (one URL per line)</label><textarea id="f-images" rows="3" placeholder="https://i.imgur.com/photo2.jpg&#10;https://i.imgur.com/photo3.jpg"></textarea></div>
     </div>
     <button class="save-btn" onclick="saveItem()">Save Item</button>
     <button class="cancel-btn" onclick="clearForm()">Cancel</button>
@@ -207,6 +206,8 @@ async function loadInv() {
 
   $('inv-body').innerHTML = items.map(i => {
     const imgCell = i.img ? `<img src="${i.img}" alt="">` : '<span style="color:#ccc">—</span>';
+    const photoCount = (i.img ? 1 : 0) + (i.images||[]).length;
+    const photoLabel = photoCount > 1 ? `<div style="font-size:9px;color:var(--faint);margin-top:2px">📷 ${photoCount}</div>` : '';
     const qtyStyle = i.qty === 0 ? 'color:#cc6666;font-weight:700' : i.qty <= 2 ? 'color:#dc6b4a;font-weight:600' : '';
     const rowStyle = i.qty === 0 ? 'opacity:0.5;' : '';
     const cost = i.cost || 0;
@@ -214,7 +215,7 @@ async function loadInv() {
     const profitColor = profit > 0 ? '#1a5c38' : profit < 0 ? '#cc6666' : 'var(--faint)';
     const costDisplay = cost > 0 ? fmt(cost) : '<span style="color:#ccc">—</span>';
     const profitDisplay = cost > 0 ? '<span style="color:'+profitColor+';font-weight:700">'+fmt(profit)+'</span>' : '<span style="color:#ccc">—</span>';
-    return `<tr style="${rowStyle}"><td>${imgCell}</td><td style="font-weight:600">${i.brand}</td><td>${i.name}</td><td>${i.type}</td><td>${i.hand}</td><td>${i.cond||'—'}</td><td style="font-size:11px;color:var(--faint)">${costDisplay}</td><td style="font-weight:700">${fmt(i.price)}</td><td>${profitDisplay}</td><td style="${qtyStyle}">${i.qty}</td><td><button class="act-btn act-edit" onclick="editItem(${i.id})">Edit</button><button class="act-btn act-del" onclick="delItem(${i.id},'${i.brand} ${i.name}')">Delete</button></td></tr>`;
+    return `<tr style="${rowStyle}"><td>${imgCell}${photoLabel}</td><td style="font-weight:600">${i.brand}</td><td>${i.name}</td><td>${i.type}</td><td>${i.hand}</td><td>${i.cond||'—'}</td><td style="font-size:11px;color:var(--faint)">${costDisplay}</td><td style="font-weight:700">${fmt(i.price)}</td><td>${profitDisplay}</td><td style="${qtyStyle}">${i.qty}</td><td><button class="act-btn act-edit" onclick="editItem(${i.id})">Edit</button><button class="act-btn act-del" onclick="delItem(${i.id},'${i.brand} ${i.name}')">Delete</button></td></tr>`;
   }).join('');
 }
 
@@ -245,16 +246,18 @@ async function editItem(id) {
   $('f-brand').value = i.brand; $('f-name').value = i.name; $('f-type').value = i.type;
   $('f-hand').value = i.hand; $('f-cond').value = i.cond||''; $('f-price').value = i.price;
   $('f-cost').value = i.cost||''; $('f-qty').value = i.qty; $('f-img').value = i.img||''; $('f-notes').value = i.notes||'';
+  $('f-images').value = (i.images||[]).join('\n');
 }
 
 async function saveItem() {
   const brand=$('f-brand').value.trim(), name=$('f-name').value.trim(), price=parseInt($('f-price').value);
   if(!brand||!name||!price){showMsg('err','Brand, name, and price are required.');return;}
+  const images = $('f-images').value.split('\n').map(u=>u.trim()).filter(u=>u);
   const data = {
     brand, name, type:$('f-type').value, hand:$('f-hand').value,
     cond:$('f-cond').value, price, cost:parseInt($('f-cost').value)||0,
     qty:parseInt($('f-qty').value)||1,
-    img:$('f-img').value.trim(), notes:$('f-notes').value.trim(), active:true
+    img:$('f-img').value.trim(), images:images, notes:$('f-notes').value.trim(), active:true
   };
   const editId = $('edit-id').value;
   if (editId) {
@@ -277,7 +280,8 @@ async function delItem(id, name) {
 function clearForm() {
   $('edit-id').value=''; $('f-brand').value=''; $('f-name').value=''; $('f-type').value='Putter';
   $('f-hand').value='RH'; $('f-cond').value=''; $('f-price').value=''; $('f-cost').value='';
-  $('f-qty').value='1'; $('f-img').value=''; $('f-notes').value=''; $('form-title').textContent='Add New Item';
+  $('f-qty').value='1'; $('f-img').value=''; $('f-images').value=''; $('f-notes').value='';
+  $('form-title').textContent='Add New Item';
 }
 
 loadInv();
