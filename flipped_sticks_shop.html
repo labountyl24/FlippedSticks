@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipped Sticks — Premium Pre-Owned Golf</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Playfair Display',Georgia,serif;background:#f0f5f1;min-height:100vh;color:#1a5c38;}
+:root{--dk:#0d3320;--mg:#1a5c38;--lg:#2d8a56;--accent:#45a86e;--pale:#d8f3dc;--border:#d0eadb;--muted:#5a7d66;--faint:#78a088;}
+header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position:sticky;top:0;z-index:100;border-bottom:3px solid var(--accent);}
+.hi{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.logo{display:flex;align-items:baseline;gap:10px;cursor:pointer;text-decoration:none;}.logo h1{font-size:24px;font-weight:900;color:#fff;letter-spacing:-.5px;}.logo span{font-size:11px;color:#98d9aa;font-family:'DM Sans',sans-serif;}
+.hr{display:flex;align-items:center;gap:14px;}.loc{color:#c4ecd0;font-size:11px;font-family:'DM Sans',sans-serif;}
+.cb{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:8px 16px;cursor:pointer;display:flex;align-items:center;gap:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;}.cb:hover{background:rgba(255,255,255,.25);}
+.cbg{background:var(--accent);color:#fff;border-radius:20px;padding:2px 8px;font-size:11px;font-weight:800;}
+.hero{background:linear-gradient(135deg,var(--dk),var(--mg));border-radius:16px;padding:40px 36px;margin-bottom:24px;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;top:0;right:0;width:300px;height:100%;background:radial-gradient(circle at 80% 50%,rgba(45,138,86,.4),transparent 70%);}
+.hero h2{font-size:32px;font-weight:900;color:#fff;letter-spacing:-1px;position:relative;z-index:1;}.hero p{margin-top:8px;font-size:14px;color:#98d9aa;font-family:'DM Sans',sans-serif;position:relative;z-index:1;max-width:500px;}
+.htags{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1;}.htag{background:rgba(255,255,255,.12);color:#c4ecd0;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;font-family:'DM Sans',sans-serif;}
+.fil{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;align-items:center;font-family:'DM Sans',sans-serif;}
+.sw{position:relative;flex:1 1 200px;}.sw input{width:100%;padding:10px 12px 10px 36px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:inherit;background:#fff;}.sw svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--faint);}
+.fil select{padding:10px 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:inherit;background:#fff;color:var(--mg);font-weight:600;min-width:110px;}
+.rc{font-size:13px;color:var(--faint);margin-bottom:14px;font-family:'DM Sans',sans-serif;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;}
+.card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column;}.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06);}
+.cimg{width:100%;height:200px;object-fit:cover;display:block;background:#e8f0eb;}
+.cph{width:100%;height:80px;background:linear-gradient(135deg,#f0f7f2,#e8f0eb);display:flex;align-items:center;justify-content:center;font-size:32px;}
+.ctop{padding:12px 16px 6px;display:flex;justify-content:space-between;align-items:start;}
+.ctype{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:'DM Sans',sans-serif;}
+.clh{background:#fef3c7;color:#92400e;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:700;margin-left:6px;font-family:'DM Sans',sans-serif;}
+.bdg{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;font-family:'DM Sans',sans-serif;margin-left:4px;}
+.bn{background:#d8f3dc;color:#1a5c38;}.b9{background:#e8f4fd;color:#1a5078;}.b8{background:#fef3c7;color:#92400e;}.bq{background:#e8f0eb;color:#3e7a55;}
+.cbod{padding:4px 16px 16px;flex:1;display:flex;flex-direction:column;}
+.cbr{font-size:12px;color:var(--muted);font-weight:600;font-family:'DM Sans',sans-serif;margin-bottom:2px;}
+.cnm{font-size:16px;font-weight:700;color:var(--mg);margin-bottom:2px;line-height:1.3;}
+.cnt{font-size:11px;color:var(--faint);font-family:'DM Sans',sans-serif;margin-bottom:6px;}
+.cbot{display:flex;justify-content:space-between;align-items:end;margin-top:auto;padding-top:8px;}
+.cpr{font-size:24px;font-weight:900;color:var(--mg);}
+.abtn{background:var(--mg);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.abtn:hover{background:var(--lg);}.abtn.ic{background:var(--pale);color:var(--mg);border:2px solid var(--mg);}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;display:none;}.ov.open{display:block;}
+.cd{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100vh;background:#fff;z-index:200;box-shadow:-8px 0 30px rgba(0,0,0,.15);display:flex;flex-direction:column;transition:right .3s;}.cd.open{right:0;}
+.cdh{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}.cdh h3{font-size:18px;color:var(--mg);}
+.clb{background:none;border:none;cursor:pointer;color:var(--muted);font-size:20px;padding:4px;}
+.cdi{flex:1;overflow:auto;padding:16px 24px;}
+.cem{text-align:center;padding:40px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:14px;}
+.ci{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #e8f0eb;align-items:center;}.cii{flex:1;}
+.cib{font-weight:700;font-size:13px;color:var(--mg);}.cin{font-size:12px;color:#3e7a55;font-family:'DM Sans',sans-serif;}.cim{font-size:11px;color:var(--faint);font-family:'DM Sans',sans-serif;}
+.qc{display:flex;align-items:center;gap:4px;}.qb{background:#f0f5f1;border:none;border-radius:4px;width:26px;height:26px;cursor:pointer;font-size:14px;font-weight:700;color:var(--mg);display:flex;align-items:center;justify-content:center;}.qb:hover{background:var(--pale);}.qn{font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;min-width:20px;text-align:center;}
+.cip{font-weight:800;color:var(--mg);font-size:14px;min-width:60px;text-align:right;}.cir{background:none;border:none;cursor:pointer;color:#cc6666;font-size:18px;padding:4px;}
+.cdf{padding:16px 24px;border-top:2px solid var(--mg);background:#f7fbf8;}
+.cdt{display:flex;justify-content:space-between;margin-bottom:12px;}.cdt span:first-child{font-size:16px;font-weight:700;}.cdt span:last-child{font-size:20px;font-weight:900;}
+.cob{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}.cob:hover{background:var(--lg);}
+.cop{max-width:700px;margin:0 auto;padding:32px 24px;}
+.bbk{background:none;border:none;cursor:pointer;color:var(--lg);font-size:14px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:24px;}
+.cog{display:grid;grid-template-columns:1fr 1fr;gap:20px;}@media(max-width:700px){.cog{grid-template-columns:1fr;}}
+.coc{background:#fff;border-radius:12px;padding:24px;border:1px solid var(--border);}.coc h3{margin-bottom:16px;font-size:16px;}
+.fg{margin-bottom:12px;}.fg label{font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;font-family:'DM Sans',sans-serif;}
+.fg input,.fg textarea{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:'DM Sans',sans-serif;}.fg textarea{resize:vertical;}
+.mbs{display:flex;gap:8px;margin-top:8px;}.mb{flex:1;padding:12px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;border:1px solid var(--border);background:#fff;color:var(--muted);text-align:center;transition:all .15s;}.mb.act{border:2px solid var(--mg);background:var(--pale);color:var(--mg);}
+.pi{background:#f7fbf8;border-radius:8px;padding:12px;font-size:12px;color:#3e7a55;line-height:1.6;font-family:'DM Sans',sans-serif;margin-top:8px;}
+.sub{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:12px;}.sub:disabled{background:#98d9aa;cursor:not-allowed;}
+.ol{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e8f0eb;font-size:13px;font-family:'DM Sans',sans-serif;}
+.otr{display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:2px solid var(--mg);}
+.cfp{display:flex;align-items:center;justify-content:center;min-height:80vh;padding:24px;}
+.cfb{background:#fff;border-radius:16px;padding:48px;text-align:center;max-width:500px;border:2px solid var(--lg);box-shadow:0 20px 60px rgba(0,0,0,.1);}.cfb h2{color:var(--mg);font-size:28px;margin:16px 0 8px;}.cfb p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:24px;font-family:'DM Sans',sans-serif;}
+.cfs{background:#f0f7f2;border-radius:10px;padding:16px;margin-bottom:24px;text-align:left;}
+.bsb{background:var(--mg);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.fc{position:fixed;bottom:20px;right:20px;background:var(--mg);color:#fff;border:none;border-radius:50px;padding:14px 20px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(26,92,56,.4);display:none;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;z-index:50;}.fc:hover{background:var(--lg);}
+footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-family:'DM Sans',sans-serif;}
+.es{text-align:center;padding:60px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:15px;display:none;}
+@media(max-width:600px){.hero h2{font-size:24px;}.hero{padding:28px 20px;}.hi{padding:12px 16px;}.logo h1{font-size:20px;}.grid{grid-template-columns:1fr 1fr;}.cpr{font-size:20px;}}
+@media(max-width:400px){.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header><div class="hi">
+  <a class="logo" onclick="location.reload()"><h1>FLIPPED STICKS</h1><span>Premium Pre-Owned Golf</span></a>
+  <div class="hr"><span class="loc">📍 Minneapolis, MN</span><button class="cb" onclick="toggleCart()">🛒 Cart <span class="cbg" id="cc">0</span></button></div>
+</div></header>
+<div class="ov" id="ov" onclick="toggleCart()"></div>
+<div class="cd" id="cd">
+  <div class="cdh"><h3 id="ct">Your Cart (0)</h3><button class="clb" onclick="toggleCart()">✕</button></div>
+  <div class="cdi" id="cdi"></div>
+  <div class="cdf" id="cdf" style="display:none"><div class="cdt"><span>Total</span><span id="ctp">$0</span></div><button class="cob" onclick="goCheckout()">Checkout</button></div>
+</div>
+<div id="mc">
+  <div style="max-width:1200px;margin:0 auto;padding:24px" id="sp">
+    <div class="hero"><h2>Shop the Collection</h2><p>Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide. PayPal · Venmo · Zelle · Cash</p>
+      <div class="htags"><span class="htag" id="sc"></span><span class="htag">588+ clubs flipped</span><span class="htag">Trusted since 2023</span></div></div>
+    <div class="fil">
+      <div class="sw"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" id="se" placeholder="Search clubs..." oninput="rg()"></div>
+      <select id="tf" onchange="rg()"><option value="All">All Types</option></select>
+      <select id="bf" onchange="rg()"><option value="All">All Brands</option></select>
+      <select id="hf" onchange="rg()"><option value="All">All Hands</option><option value="RH">Right Hand</option><option value="LH">Left Hand</option></select>
+      <select id="so" onchange="rg()"><option value="price-desc">Price: High → Low</option><option value="price-asc">Price: Low → High</option><option value="brand">Brand A–Z</option><option value="type">Type A–Z</option></select>
+    </div>
+    <div class="rc" id="rc"></div><div class="grid" id="pg"></div><div id="es" class="es">🏌️<br>No clubs match your filters.</div>
+    <footer><div style="font-size:18px;font-weight:800;font-family:'Playfair Display',serif;margin-bottom:4px">FLIPPED STICKS</div><div style="font-size:12px;color:var(--faint)">Minneapolis, MN · PayPal · Venmo · Zelle · Cash</div><div style="font-size:11px;color:#a8b8a0;margin-top:8px">588+ clubs sold · Trusted local seller since 2023</div></footer>
+  </div>
+</div>
+<button class="fc" id="fc" onclick="toggleCart()">🛒 <span id="ft">$0</span> (<span id="fn">0</span>)</button>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════════╗
+// ║                                                                      ║
+// ║   📝 YOUR INVENTORY — EDIT THIS SECTION TO UPDATE LISTINGS           ║
+// ║                                                                      ║
+// ║   Each item looks like this:                                         ║
+// ║                                                                      ║
+// ║   {                                                                  ║
+// ║     brand:  "Taylormade",            ← Brand name                    ║
+// ║     name:   "Spider Tour X 34in",    ← Model name                   ║
+// ║     type:   "Putter",                ← Type (used for filters)       ║
+// ║     hand:   "RH",                    ← "RH" or "LH"                 ║
+// ║     notes:  "9/10 cond, custom grip",← Any details for buyer        ║
+// ║     cond:   "New",                   ← Badge: "New" "9/10" "8/10"   ║
+// ║     price:  275,                     ← Price in dollars (no $)       ║
+// ║     qty:    1,                       ← How many you have             ║
+// ║     img:    "",                      ← Photo URL (see below)         ║
+// ║   },                                                                 ║
+// ║                                                                      ║
+// ║   🖼️ HOW TO ADD PHOTOS:                                              ║
+// ║                                                                      ║
+// ║   Option A — Imgur (easiest, free):                                  ║
+// ║     1. Go to imgur.com/upload                                        ║
+// ║     2. Drag your photo in                                            ║
+// ║     3. Right-click the image → "Copy image address"                  ║
+// ║     4. Paste it in the img field:                                    ║
+// ║        img: "https://i.imgur.com/abc123.jpg",                        ║
+// ║                                                                      ║
+// ║   Option B — Any image URL that ends in .jpg/.png/.webp              ║
+// ║     For example from Google Drive (set to public), Dropbox, etc.     ║
+// ║                                                                      ║
+// ║   Leave img: "" for no photo (shows an emoji placeholder instead)    ║
+// ║                                                                      ║
+// ║   ➕ TO ADD A NEW ITEM:                                               ║
+// ║     Copy any item block below, paste it in the right section,        ║
+// ║     and change the values.                                           ║
+// ║                                                                      ║
+// ║   ❌ TO REMOVE AN ITEM:                                               ║
+// ║     Delete the entire { ... }, block for that item.                  ║
+// ║                                                                      ║
+// ║   ✅ TO MARK SOLD:                                                    ║
+// ║     Delete the item, or set qty: 0                                   ║
+// ║                                                                      ║
+// ║   💲 TO CHANGE A PRICE:                                               ║
+// ║     Find the item below and change the price number.                 ║
+// ║                                                                      ║
+// ╚══════════════════════════════════════════════════════════════════════╝
+
+const INVENTORY = [
+
+  // ── IRONS SETS ─────────────────────────────────────
+  { brand: "Taylormade", name: "Battleworn P7CBs", type: "Irons Set", hand: "RH", notes: "NEW", cond: "New", price: 1200, qty: 1, img: "" },
+  { brand: "Taylormade", name: "P790s", type: "Irons Set", hand: "RH", notes: "NEW", cond: "New", price: 1150, qty: 1, img: "" },
+
+  // ── DRIVERS ────────────────────────────────────────
+  { brand: "Taylormade", name: "Qi4D 9* Max", type: "Driver", hand: "RH", notes: "NEW", cond: "New", price: 537, qty: 2, img: "" },
+  { brand: "Taylormade", name: "Qi4D 10.5* Core", type: "Driver", hand: "RH", notes: "", cond: "", price: 500, qty: 1, img: "" },
+  { brand: "Callaway", name: "Ai Smoke Mini Driver", type: "Driver", hand: "RH", notes: "Mini Driver", cond: "", price: 425, qty: 1, img: "" },
+  { brand: "Titleist", name: "TSR3 8 degree", type: "Driver", hand: "RH", notes: "Velo Black Stiff", cond: "", price: 400, qty: 1, img: "" },
+  { brand: "Srixon", name: "ZXI Driver", type: "Driver", hand: "RH", notes: "Red Velo", cond: "", price: 388, qty: 1, img: "" },
+  { brand: "Cobra", name: "LTDx 9 degree", type: "Driver", hand: "LH", notes: "Velocore", cond: "", price: 262, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Qi10 12*", type: "Driver", hand: "RH", notes: "", cond: "", price: 238, qty: 1, img: "" },
+  { brand: "Titleist", name: "TSI2 Driver", type: "Driver", hand: "RH", notes: "Rogue MSI stiff", cond: "", price: 200, qty: 1, img: "" },
+
+  // ── PUTTERS ────────────────────────────────────────
+  { brand: "Taylormade", name: "ZT Blacked", type: "Putter", hand: "RH", notes: "NEW", cond: "New", price: 400, qty: 4, img: "" },
+  { brand: "SIK", name: "Bad2", type: "Putter", hand: "RH", notes: "", cond: "", price: 350, qty: 1, img: "" },
+  { brand: "Scotty Cameron", name: "2024 Phantom 11", type: "Putter", hand: "RH", notes: "9/10 cond", cond: "9/10", price: 338, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Spider Tour X L Neck 34\"", type: "Putter", hand: "RH", notes: "NEW", cond: "New", price: 275, qty: 1, img: "" },
+  { brand: "SIK", name: "Flo armlock", type: "Putter", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 262, qty: 1, img: "" },
+  { brand: "Bettinardi", name: "Studio Stock #35", type: "Putter", hand: "RH", notes: "custom finish head only", cond: "", price: 225, qty: 1, img: "" },
+  { brand: "Bettinardi", name: "BBFortyFive", type: "Putter", hand: "RH", notes: "Mint", cond: "", price: 225, qty: 1, img: "" },
+  { brand: "Toulon", name: "Chicago", type: "Putter", hand: "RH", notes: "head only", cond: "", price: 225, qty: 1, img: "" },
+  { brand: "Toulon", name: "San Diego + Masters Accra", type: "Putter", hand: "RH", notes: "Custom Build", cond: "", price: 212, qty: 1, img: "" },
+  { brand: "SIK", name: "Flo C Flange", type: "Putter", hand: "RH", notes: "9/10 cond", cond: "9/10", price: 200, qty: 1, img: "" },
+  { brand: "Taylormade", name: "TP Soto Shamrock", type: "Putter", hand: "RH", notes: "Shamrock", cond: "", price: 162, qty: 1, img: "" },
+  { brand: "Taylormade", name: "TP Juno Shamrock", type: "Putter", hand: "RH", notes: "Shamrock", cond: "", price: 162, qty: 1, img: "" },
+  { brand: "Taylormade", name: "TP Soto Ice Blue", type: "Putter", hand: "RH", notes: "Ice Blue", cond: "", price: 162, qty: 1, img: "" },
+  { brand: "Taylormade", name: "TP Soto Rare Milled", type: "Putter", hand: "RH", notes: "Rare Milled", cond: "", price: 162, qty: 1, img: "" },
+  { brand: "Odyssey", name: "Armlock V-Line", type: "Putter", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 150, qty: 1, img: "" },
+  { brand: "Taylormade", name: "GT Rollback", type: "Putter", hand: "LH", notes: "New", cond: "New", price: 138, qty: 10, img: "" },
+  { brand: "Ping", name: "Anser", type: "Putter", hand: "RH", notes: "NEW", cond: "New", price: 138, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Reserve Notchback", type: "Putter", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 138, qty: 1, img: "" },
+  { brand: "Taylormade", name: "GT Notchback 35\"", type: "Putter", hand: "LH", notes: "NEW", cond: "New", price: 130, qty: 1, img: "" },
+  { brand: "Taylormade", name: "GT Rollback 34\"", type: "Putter", hand: "LH", notes: "NEW", cond: "New", price: 130, qty: 1, img: "" },
+  { brand: "Cleveland", name: "Huntington Beach", type: "Putter", hand: "RH", notes: "blade 5/10", cond: "", price: 50, qty: 1, img: "" },
+
+  // ── WEDGES ─────────────────────────────────────────
+  { brand: "Taylormade", name: "MG5 Wedge Set", type: "Wedge", hand: "RH", notes: "New, 50-54-58", cond: "New", price: 488, qty: 1, img: "" },
+  { brand: "Taylormade", name: "MG2 58 degree", type: "Wedge", hand: "RH", notes: "", cond: "", price: 60, qty: 1, img: "" },
+
+  // ── FAIRWAY WOODS ──────────────────────────────────
+  { brand: "Callaway", name: "Ai Smoke 3-wood head", type: "Fairway Wood", hand: "LH", notes: "9/10 cond", cond: "9/10", price: 175, qty: 1, img: "" },
+  { brand: "Callaway", name: "Rogue ST Max D 3-wood", type: "Fairway Wood", hand: "LH", notes: "New", cond: "New", price: 125, qty: 1, img: "" },
+  { brand: "Callaway", name: "Rogue ST LS 3-wood", type: "Fairway Wood", hand: "LH", notes: "New", cond: "New", price: 125, qty: 1, img: "" },
+  { brand: "Callaway", name: "Epic 3 wood", type: "Fairway Wood", hand: "RH", notes: "Head only", cond: "", price: 88, qty: 1, img: "" },
+
+  // ── HYBRIDS ────────────────────────────────────────
+  { brand: "Taylormade", name: "Stealth 2 3 hybrid head", type: "Hybrid", hand: "LH", notes: "New", cond: "New", price: 125, qty: 1, img: "" },
+  { brand: "Callaway", name: "Epic Flash", type: "Hybrid", hand: "RH", notes: "4/10 cond", cond: "", price: 55, qty: 1, img: "" },
+
+  // ── DRIVER SHAFTS ──────────────────────────────────
+  { brand: "Taylormade", name: "Ventus Velocore Black", type: "Driver Shaft", hand: "RH", notes: "NEW 6-S", cond: "New", price: 212, qty: 4, img: "" },
+  { brand: "Tour AD", name: "Driver Shaft xstiff", type: "Driver Shaft", hand: "RH", notes: "9/10 cond", cond: "9/10", price: 162, qty: 1, img: "" },
+  { brand: "Hzrdus", name: "Smoke RDX Green", type: "Driver Shaft", hand: "RH", notes: "No adapter", cond: "", price: 125, qty: 1, img: "" },
+  { brand: "Ping", name: "Atmos Tour Spec Reg Flex", type: "Driver Shaft", hand: "RH", notes: "Fujikura", cond: "", price: 90, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Aldila Rogue MSI 70 S", type: "Driver Shaft", hand: "RH", notes: "", cond: "", price: 90, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Fuji Air Speeder 45s", type: "Driver Shaft", hand: "RH", notes: "", cond: "", price: 90, qty: 1, img: "" },
+  { brand: "Hzrdus", name: "RDX Smoke Red", type: "Driver Shaft", hand: "RH", notes: "Ping adapter", cond: "", price: 80, qty: 3, img: "" },
+  { brand: "Mitsubishi", name: "Tensei Black", type: "Driver Shaft", hand: "RH", notes: "TM Adapter", cond: "", price: 80, qty: 1, img: "" },
+  { brand: "Mitsubishi", name: "Tensei Orange", type: "Driver Shaft", hand: "RH", notes: "Ping adapter", cond: "", price: 80, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Reax", type: "Driver Shaft", hand: "RH", notes: "stiff", cond: "", price: 75, qty: 1, img: "" },
+
+  // ── SHAFTS ─────────────────────────────────────────
+  { brand: "LA GOLF", name: "SOHO .370 34'", type: "Shaft", hand: "RH", notes: "", cond: "", price: 188, qty: 1, img: "" },
+  { brand: "Tour AD", name: "Driver Shaft", type: "Shaft", hand: "RH", notes: "Tour AD", cond: "", price: 162, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Aldila Rogue 60TX", type: "Shaft", hand: "RH", notes: "", cond: "", price: 90, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Recoil F5 41\" shaft", type: "Shaft", hand: "RH", notes: "New, uncut", cond: "New", price: 62, qty: 1, img: "" },
+
+  // ── PUTTER SHAFTS ──────────────────────────────────
+  { brand: "LA GOLF", name: "LAGP SOHO", type: "Putter Shaft", hand: "RH", notes: "White", cond: "", price: 175, qty: 1, img: "" },
+  { brand: "BGT", name: "Stability Polar shaft", type: "Putter Shaft", hand: "RH", notes: "9/10, .370", cond: "9/10", price: 138, qty: 1, img: "" },
+  { brand: "LA GOLF", name: "Putter Shaft SOHO", type: "Putter Shaft", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 125, qty: 1, img: "" },
+
+  // ── HEADCOVERS ─────────────────────────────────────
+  { brand: "Tour Trash", name: "Blade Headcover", type: "Headcover", hand: "RH", notes: "Rare", cond: "", price: 425, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Vault - Arachnid", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 115, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Vault - The Don Palm Trees", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 100, qty: 2, img: "" },
+  { brand: "Taylormade", name: "Vault - California Dreaming", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 100, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Vault - Festive Flannel", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 95, qty: 2, img: "" },
+  { brand: "Taylormade", name: "Vault - Sunset", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 88, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Vault - Coffee and Clubs", type: "Headcover", hand: "RH", notes: "New - Blade", cond: "New", price: 85, qty: 3, img: "" },
+  { brand: "Taylormade", name: "Vault - Pizza", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 75, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Pinehurst 24' Hybrid HC", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 70, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Hot n Fresh Pizza HC", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 62, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Vault - Lawnchairs", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 55, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Vault - Bacon and Eggs", type: "Headcover", hand: "RH", notes: "New - Blade", cond: "New", price: 55, qty: 1, img: "" },
+  { brand: "Taylormade", name: "Coffee n Clubs HC", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 45, qty: 2, img: "" },
+  { brand: "Taylormade", name: "Vault - Ailsa 8", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 35, qty: 1, img: "" },
+
+  // ── GOLF BAGS ──────────────────────────────────────
+  { brand: "Callaway", name: "Org 14 Cart Bag", type: "Golf Bag", hand: "RH", notes: "New", cond: "New", price: 188, qty: 1, img: "" },
+  { brand: "Cobra", name: "Vessel 4 slot", type: "Golf Bag", hand: "RH", notes: "", cond: "", price: 138, qty: 1, img: "" },
+  { brand: "Burton", name: "Vintage Golf Bag", type: "Golf Bag", hand: "RH", notes: "", cond: "", price: 40, qty: 1, img: "" },
+
+  // ── OTHER ──────────────────────────────────────────
+  { brand: "Vectra", name: "Ladies Golf Set", type: "Golf Set", hand: "RH", notes: "Ladies complete set", cond: "", price: 150, qty: 1, img: "" },
+  { brand: "Haywood", name: "100s 4 iron", type: "Driving Iron", hand: "RH", notes: "nippon modus", cond: "", price: 88, qty: 1, img: "" },
+  { brand: "PXG", name: "0311 5 iron", type: "Single Iron", hand: "RH", notes: "Steelfiber shaft", cond: "", price: 65, qty: 1, img: "" },
+
+];
+
+// ╔═══════════════════════════════════════════════════════╗
+// ║  ✅ END OF INVENTORY                                  ║
+// ║  ⚠️  Don't edit anything below this line!             ║
+// ╚═══════════════════════════════════════════════════════╝
+
+INVENTORY.forEach((item,i)=>{item.id=i+1;});
+const A=INVENTORY.filter(i=>i.qty>0);
+let cart=[];
+const $=id=>document.getElementById(id);
+function fmt(n){return"$"+n.toLocaleString();}
+const TE={"Putter":"🏌️","Driver":"💥","Irons Set":"⛳","Wedge":"🎯","Fairway Wood":"🌲","Driver Shaft":"🔧","Headcover":"🧢","Golf Bag":"🎒","Hybrid":"🔀","Shaft":"🔧","Golf Set":"📦","Putter Shaft":"🔧","Driving Iron":"⚡","Single Iron":"1️⃣"};
+
+function init(){
+  const ts=[...new Set(A.map(i=>i.type))].sort(),bs=[...new Set(A.map(i=>i.brand))].sort();
+  ts.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;$('tf').appendChild(o);});
+  bs.forEach(b=>{const o=document.createElement('option');o.value=b;o.textContent=b;$('bf').appendChild(o);});
+  $('sc').textContent=A.reduce((s,i)=>s+i.qty,0)+' items in stock';
+}
+
+function gf(){
+  let items=[...A];const s=$('se').value.toLowerCase(),tf=$('tf').value,bf=$('bf').value,hf=$('hf').value,so=$('so').value;
+  if(s) items=items.filter(i=>(i.brand+i.name+i.type+i.notes).toLowerCase().includes(s));
+  if(tf!=='All') items=items.filter(i=>i.type===tf);if(bf!=='All') items=items.filter(i=>i.brand===bf);if(hf!=='All') items=items.filter(i=>i.hand===hf);
+  if(so==='price-desc') items.sort((a,b)=>b.price-a.price);else if(so==='price-asc') items.sort((a,b)=>a.price-b.price);
+  else if(so==='brand') items.sort((a,b)=>a.brand.localeCompare(b.brand));else if(so==='type') items.sort((a,b)=>a.type.localeCompare(b.type));
+  return items;
+}
+function bdg(c){return c==='New'?'<span class="bdg bn">New</span>':c==='9/10'?'<span class="bdg b9">9/10</span>':c==='8/10'?'<span class="bdg b8">8/10</span>':'';}
+
+function rg(){
+  const items=gf(),g=$('pg'),es=$('es');$('rc').textContent=items.length+' items';
+  if(!items.length){g.innerHTML='';es.style.display='block';return;}es.style.display='none';
+  g.innerHTML=items.map(item=>{
+    const ic=cart.find(c=>c.id===item.id),bc=ic?'abtn ic':'abtn',bt=ic?'In Cart ('+ic.qty+')':'Add to Cart';
+    const nt=item.notes&&item.notes!==item.cond&&item.notes!=='NEW'?'<div class="cnt">'+item.notes+'</div>':'';
+    const im=item.img?'<img class="cimg" src="'+item.img+'" alt="'+item.brand+' '+item.name+'" onerror="this.outerHTML=\'<div class=cph>'+(TE[item.type]||'⛳')+'</div>\'">':'<div class="cph">'+(TE[item.type]||'⛳')+'</div>';
+    return '<div class="card">'+im+'<div class="ctop"><div><span class="ctype">'+item.type+'</span>'+(item.hand==='LH'?'<span class="clh">LEFT</span>':'')+'</div><div>'+bdg(item.cond)+(item.qty>1?'<span class="bdg bq">'+item.qty+' avail</span>':'')+'</div></div><div class="cbod"><div class="cbr">'+item.brand+'</div><div class="cnm">'+item.name+'</div>'+nt+'<div class="cbot"><div class="cpr">'+fmt(item.price)+'</div><button class="'+bc+'" onclick="ac('+item.id+')">'+bt+'</button></div></div></div>';
+  }).join('');
+}
+
+function ac(id){const item=A.find(i=>i.id===id),ex=cart.find(c=>c.id===id);if(ex){if(ex.qty<item.qty)ex.qty++;}else cart.push({...item,qty:1});uc();rg();}
+function rc2(id){cart=cart.filter(c=>c.id!==id);uc();rg();}
+function uq(id,d){const c=cart.find(c=>c.id===id);if(!c)return;const m=A.find(i=>i.id===id).qty,n=c.qty+d;if(n<1||n>m)return;c.qty=n;uc();rg();}
+function cc2(){return cart.reduce((s,c)=>s+c.qty,0);}
+function ct2(){return cart.reduce((s,c)=>s+c.price*c.qty,0);}
+
+function uc(){
+  const n=cc2(),t=ct2();$('cc').textContent=n;$('ct').textContent='Your Cart ('+n+')';
+  if(!n){$('cdi').innerHTML='<div class="cem">🛒<br><br>Your cart is empty</div>';$('cdf').style.display='none';$('fc').style.display='none';return;}
+  $('cdf').style.display='block';$('ctp').textContent=fmt(t);$('fc').style.display='flex';$('ft').textContent=fmt(t);$('fn').textContent=n;
+  $('cdi').innerHTML=cart.map(c=>'<div class="ci"><div class="cii"><div class="cib">'+c.brand+'</div><div class="cin">'+c.name+'</div><div class="cim">'+c.type+' · '+c.hand+'</div></div><div class="qc"><button class="qb" onclick="uq('+c.id+',-1)">−</button><span class="qn">'+c.qty+'</span><button class="qb" onclick="uq('+c.id+',1)">+</button></div><div class="cip">'+fmt(c.price*c.qty)+'</div><button class="cir" onclick="rc2('+c.id+')">✕</button></div>').join('');
+}
+
+function toggleCart(){$('cd').classList.toggle('open');$('ov').classList.toggle('open');}
+
+let sm='local';
+function goCheckout(){
+  toggleCart();$('sp').style.display='none';$('fc').style.display='none';
+  $('mc').insertAdjacentHTML('beforeend','<div class="cop" id="cop"><button class="bbk" onclick="bts()">← Back to Shop</button><h2 style="font-size:28px;margin-bottom:24px">Checkout</h2><div class="cog"><div class="coc"><h3>Order Summary</h3>'+cart.map(c=>'<div class="ol"><div><div style="font-weight:600;color:#1a5c38">'+c.brand+' '+c.name+'</div><div style="color:#78a088;font-size:11px">'+c.type+' · '+c.hand+(c.qty>1?' × '+c.qty:'')+'</div></div><div style="font-weight:700;color:#1a5c38">'+fmt(c.price*c.qty)+'</div></div>').join('')+'<div class="otr"><span style="font-size:18px;font-weight:800">Total</span><span style="font-size:22px;font-weight:900">'+fmt(ct2())+'</span></div></div><div class="coc"><h3>Your Info</h3><div class="fg"><label>Name *</label><input id="cn"></div><div class="fg"><label>Email</label><input id="ce" type="email"></div><div class="fg"><label>Phone</label><input id="cp" type="tel"></div><div class="fg"><label>How do you want to get it?</label><div class="mbs"><button class="mb act" id="bl" onclick="sme(\'local\')">📍 Local Pickup</button><button class="mb" id="bs" onclick="sme(\'ship\')">📦 Ship to Me</button></div></div><div class="fg"><label>Payment</label><div class="pi" id="pii">Cash, Venmo, PayPal, or Zelle accepted at pickup. Minneapolis area.</div></div><div class="fg"><label>Notes (optional)</label><textarea id="cno" rows="3" placeholder="Questions, pickup times, etc."></textarea></div><button class="sub" onclick="so2()">Place Order</button></div></div></div>');
+}
+function sme(m){sm=m;$('bl').classList.toggle('act',m==='local');$('bs').classList.toggle('act',m==='ship');$('pii').textContent=m==='local'?'Cash, Venmo, PayPal, or Zelle accepted at pickup. Minneapolis area.':'PayPal or Venmo. Shipping cost will be quoted after order confirmation.';}
+function bts(){const p=$('cop');if(p)p.remove();$('sp').style.display='block';$('fc').style.display=cc2()?'flex':'none';}
+function so2(){
+  const n=$('cn').value,e=$('ce').value,p=$('cp').value;
+  if(!n||(!e&&!p)){alert('Please enter your name and email or phone.');return;}
+  const cp=$('cop');if(cp)cp.remove();
+  $('mc').insertAdjacentHTML('beforeend','<div class="cfp" id="cfp"><div class="cfb"><div style="font-size:48px">✅</div><h2>Order Received!</h2><p>Thanks '+n+'! I\'ll reach out to you at <strong>'+(e||p)+'</strong> shortly to arrange '+(sm==='local'?'local pickup':'payment and shipping')+'.</p><div class="cfs"><div style="font-weight:700;color:#1a5c38;margin-bottom:8px">Order Summary</div>'+cart.map(c=>'<div style="display:flex;justify-content:space-between;font-size:13px;color:#3e7a55;padding:4px 0"><span>'+c.brand+' '+c.name+(c.qty>1?' (×'+c.qty+')':'')+'</span><span>'+fmt(c.price*c.qty)+'</span></div>').join('')+'<div style="border-top:2px solid #2d8a56;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-weight:800;color:#1a5c38;font-size:16px"><span>Total</span><span>'+fmt(ct2())+'</span></div></div><button class="bsb" onclick="location.reload()">Back to Shop</button></div></div>');
+}
+
+init();rg();uc();
+</script>
+</body>
+</html>
