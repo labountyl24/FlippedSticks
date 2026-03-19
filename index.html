@@ -78,6 +78,25 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-family:'DM Sans',sans-serif;}
 .es{text-align:center;padding:60px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:15px;display:none;}
 .errmsg{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;margin-top:8px;display:none;}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:none;align-items:center;justify-content:center;padding:24px;}.modal-ov.open{display:flex;}
+.modal{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative;}
+.modal-close{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.5);color:#fff;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;z-index:2;display:flex;align-items:center;justify-content:center;}
+.modal-gallery{position:relative;background:#e8f0eb;overflow:hidden;}
+.modal-gallery img{width:100%;height:340px;object-fit:cover;display:block;}
+.modal-gallery .gal-ph{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;background:linear-gradient(135deg,#f0f7f2,#e8f0eb);}
+.gal-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;font-weight:700;color:var(--mg);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);}.gal-nav:hover{background:#fff;}
+.gal-prev{left:10px;}.gal-next{right:10px;}
+.gal-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+.gal-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);border:none;cursor:pointer;padding:0;}.gal-dot.act{background:#fff;}
+.gal-count{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);color:#fff;padding:3px 10px;border-radius:12px;font-size:11px;font-family:'DM Sans',sans-serif;font-weight:600;}
+.modal-body{padding:24px;}
+.modal-brand{font-size:13px;color:var(--muted);font-weight:600;font-family:'DM Sans',sans-serif;}
+.modal-name{font-size:22px;font-weight:800;color:var(--mg);margin:4px 0 8px;}
+.modal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.modal-notes{font-size:13px;color:var(--faint);font-family:'DM Sans',sans-serif;margin-bottom:16px;line-height:1.5;}
+.modal-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border);}
+.modal-price{font-size:28px;font-weight:900;color:var(--mg);}
+.cimg-wrap{cursor:pointer;position:relative;}.cimg-wrap .photo-count{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:600;}
 .loader{text-align:center;padding:60px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:15px;}
 .loader::after{content:'';display:block;width:32px;height:32px;margin:16px auto;border:3px solid var(--border);border-top-color:var(--mg);border-radius:50%;animation:spin .6s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -113,6 +132,9 @@ footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-al
     <div id="es" class="es">🏌️<br>No clubs match your filters.</div>
     <footer><div style="font-size:18px;font-weight:800;font-family:'Playfair Display',serif;margin-bottom:4px">FLIPPED STICKS</div><div style="font-size:12px;color:var(--faint)">Minneapolis, MN · PayPal · Venmo · Zelle · Cash</div><div style="font-size:11px;color:#a8b8a0;margin-top:8px">588+ clubs sold · Trusted local seller since 2023</div><div style="margin-top:16px"><a href="admin.html" style="color:#d0eadb;font-size:10px;text-decoration:none;opacity:0.4">Admin</a></div></footer>
   </div>
+</div>
+<div class="modal-ov" id="modal-ov" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal"></div>
 </div>
 <button class="fc" id="fc" onclick="toggleCart()">🛒 <span id="ft">$0</span> (<span id="fn">0</span>)</button>
 
@@ -199,12 +221,99 @@ function rg() {
   g.innerHTML = items.map(item => {
     const ic = cart.find(c => c.id === item.id), bc = ic ? 'abtn ic' : 'abtn', bt = ic ? 'In Cart (' + ic.qty + ')' : 'Add to Cart';
     const nt = item.notes && item.notes !== item.cond && item.notes !== 'NEW' ? '<div class="cnt">' + item.notes + '</div>' : '';
-    const im = item.img ? '<img class="cimg" src="' + item.img + '" alt="' + item.brand + ' ' + item.name + '" onerror="this.outerHTML=\'<div class=cph>' + (TE[item.type] || '⛳') + '</div>\'">' : '<div class="cph">' + (TE[item.type] || '⛳') + '</div>';
+    const allImgs = getAllImages(item);
+    const photoCount = allImgs.length;
+    let im;
+    if (photoCount > 0) {
+      im = '<div class="cimg-wrap" onclick="openModal('+item.id+')"><img class="cimg" src="'+allImgs[0]+'" alt="'+item.brand+' '+item.name+'" onerror="this.parentElement.outerHTML=\'<div class=cph onclick=openModal('+item.id+')>'+(TE[item.type]||'⛳')+'</div>\'">'+(photoCount>1?'<span class="photo-count">📷 '+photoCount+'</span>':'')+'</div>';
+    } else {
+      im = '<div class="cph" onclick="openModal('+item.id+')" style="cursor:pointer">'+(TE[item.type]||'⛳')+'</div>';
+    }
     const stockClass = item.qty <= 2 ? 'stk low' : 'stk';
     const stockText = item.qty === 1 ? 'Only 1 left' : item.qty <= 3 ? 'Only ' + item.qty + ' left' : item.qty + ' in stock';
-    return '<div class="card">' + im + '<div class="ctop"><div><span class="ctype">' + item.type + '</span>' + (item.hand === 'LH' ? '<span class="clh">LEFT</span>' : '') + '</div><div>' + bdg(item.cond) + (item.qty > 1 ? '<span class="bdg bq">' + item.qty + ' avail</span>' : '') + '</div></div><div class="cbod"><div class="cbr">' + item.brand + '</div><div class="cnm">' + item.name + '</div>' + nt + '<div class="' + stockClass + '">' + stockText + '</div><div class="cbot"><div class="cpr">' + fmt(item.price) + '</div><button class="' + bc + '" onclick="ac(' + item.id + ')">' + bt + '</button></div></div></div>';
+    return '<div class="card">' + im + '<div class="ctop"><div><span class="ctype">' + item.type + '</span>' + (item.hand === 'LH' ? '<span class="clh">LEFT</span>' : '') + '</div><div>' + bdg(item.cond) + (item.qty > 1 ? '<span class="bdg bq">' + item.qty + ' avail</span>' : '') + '</div></div><div class="cbod"><div class="cbr">' + item.brand + '</div><div class="cnm">' + item.name + '</div>' + nt + '<div class="' + stockClass + '">' + stockText + '</div><div class="cbot"><div class="cpr">' + fmt(item.price) + '</div><button class="' + bc + '" onclick="event.stopPropagation();ac(' + item.id + ')">' + bt + '</button></div></div></div>';
   }).join('');
 }
+
+function getAllImages(item) {
+  const imgs = [];
+  if (item.img) imgs.push(item.img);
+  if (item.images && Array.isArray(item.images)) {
+    item.images.forEach(u => { if (u && !imgs.includes(u)) imgs.push(u); });
+  }
+  return imgs;
+}
+
+let modalIdx = 0;
+let modalImgs = [];
+
+function openModal(id) {
+  const item = ITEMS.find(i => i.id === id);
+  if (!item) return;
+  modalImgs = getAllImages(item);
+  modalIdx = 0;
+  const ic = cart.find(c => c.id === id);
+  const bc = ic ? 'abtn ic' : 'abtn';
+  const bt = ic ? 'In Cart (' + ic.qty + ')' : 'Add to Cart';
+  const hasPhotos = modalImgs.length > 0;
+  const galHTML = hasPhotos
+    ? '<div class="modal-gallery">' +
+      '<img id="modal-img" src="' + modalImgs[0] + '" alt="" onerror="this.outerHTML=\'<div class=gal-ph>' + (TE[item.type]||'⛳') + '</div>\'">' +
+      (modalImgs.length > 1 ? '<button class="gal-nav gal-prev" onclick="galNav(-1)">‹</button><button class="gal-nav gal-next" onclick="galNav(1)">›</button>' +
+      '<div class="gal-dots" id="gal-dots">' + modalImgs.map((_, i) => '<button class="gal-dot' + (i === 0 ? ' act' : '') + '" onclick="galGo(' + i + ')"></button>').join('') + '</div>' +
+      '<span class="gal-count" id="gal-count">1 / ' + modalImgs.length + '</span>' : '') +
+      '</div>'
+    : '<div class="modal-gallery"><div class="gal-ph">' + (TE[item.type]||'⛳') + '</div></div>';
+  const stockClass = item.qty <= 2 ? 'stk low' : 'stk';
+  const stockText = item.qty === 1 ? 'Only 1 left' : item.qty <= 3 ? 'Only ' + item.qty + ' left' : item.qty + ' in stock';
+
+  $('modal').innerHTML =
+    '<button class="modal-close" onclick="closeModal()">✕</button>' +
+    galHTML +
+    '<div class="modal-body">' +
+    '<div class="modal-brand">' + item.brand + '</div>' +
+    '<div class="modal-name">' + item.name + '</div>' +
+    '<div class="modal-meta">' +
+    '<span class="ctype">' + item.type + '</span>' +
+    (item.hand === 'LH' ? '<span class="clh">LEFT</span>' : '<span class="bdg bq">RH</span>') +
+    bdg(item.cond) +
+    '</div>' +
+    (item.notes && item.notes !== item.cond && item.notes !== 'NEW' ? '<div class="modal-notes">' + item.notes + '</div>' : '') +
+    '<div class="' + stockClass + '" style="margin-bottom:12px">' + stockText + '</div>' +
+    '<div class="modal-bottom">' +
+    '<div class="modal-price">' + fmt(item.price) + '</div>' +
+    '<button class="' + bc + '" style="padding:10px 24px;font-size:14px" onclick="ac(' + item.id + ');openModal(' + item.id + ')">' + bt + '</button>' +
+    '</div></div>';
+
+  $('modal-ov').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  $('modal-ov').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function galNav(dir) {
+  modalIdx = (modalIdx + dir + modalImgs.length) % modalImgs.length;
+  galUpdate();
+}
+
+function galGo(idx) {
+  modalIdx = idx;
+  galUpdate();
+}
+
+function galUpdate() {
+  const img = document.getElementById('modal-img');
+  if (img) img.src = modalImgs[modalIdx];
+  const count = document.getElementById('gal-count');
+  if (count) count.textContent = (modalIdx + 1) + ' / ' + modalImgs.length;
+  document.querySelectorAll('.gal-dot').forEach((d, i) => d.classList.toggle('act', i === modalIdx));
+}
+
+// Close modal on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 function ac(id) {
   const item = ITEMS.find(i => i.id === id);
