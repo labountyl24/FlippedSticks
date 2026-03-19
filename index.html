@@ -363,17 +363,7 @@ async function so2() {
   const total = ct2();
   const orderItems = cart.map(c => ({ id: c.id, brand: c.brand, name: c.name, type: c.type, hand: c.hand, price: c.price, qty: c.qty }));
 
-  // 1. Decrement inventory in Supabase
-  for (const c of cart) {
-    const item = ITEMS.find(i => i.id === c.id);
-    if (item) {
-      const newQty = Math.max(0, item.qty - c.qty);
-      await SB.patch('inventory', c.id, { qty: newQty });
-      item.qty = newQty; // update local cache
-    }
-  }
-
-  // 2. Save order to Supabase
+  // 1. Save order to Supabase as pending (stock NOT decremented yet — admin confirms payment first)
   await SB.post('orders', {
     customer_name: name, customer_email: email, customer_phone: phone || '',
     method: sm === 'local' ? 'Local Pickup' : 'Shipped',
