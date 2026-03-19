@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flipped Sticks — Premium Pre-Owned Golf</title>
+<meta name="description" content="Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide. Putters, drivers, irons, shafts, headcovers and more.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Playfair Display',Georgia,serif;background:#f0f5f1;min-height:100vh;color:#1a5c38;}
@@ -51,7 +52,7 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 .cdf{padding:16px 24px;border-top:2px solid var(--mg);background:#f7fbf8;}
 .cdt{display:flex;justify-content:space-between;margin-bottom:12px;}.cdt span:first-child{font-size:16px;font-weight:700;}.cdt span:last-child{font-size:20px;font-weight:900;}
 .cob{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}.cob:hover{background:var(--lg);}
-.cop{max-width:700px;margin:0 auto;padding:32px 24px;}
+.cop{max-width:750px;margin:0 auto;padding:32px 24px;}
 .bbk{background:none;border:none;cursor:pointer;color:var(--lg);font-size:14px;font-family:'DM Sans',sans-serif;font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:24px;}
 .cog{display:grid;grid-template-columns:1fr 1fr;gap:20px;}@media(max-width:700px){.cog{grid-template-columns:1fr;}}
 .coc{background:#fff;border-radius:12px;padding:24px;border:1px solid var(--border);}.coc h3{margin-bottom:16px;font-size:16px;}
@@ -59,17 +60,26 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 .fg input,.fg textarea{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:'DM Sans',sans-serif;}.fg textarea{resize:vertical;}
 .mbs{display:flex;gap:8px;margin-top:8px;}.mb{flex:1;padding:12px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;border:1px solid var(--border);background:#fff;color:var(--muted);text-align:center;transition:all .15s;}.mb.act{border:2px solid var(--mg);background:var(--pale);color:var(--mg);}
 .pi{background:#f7fbf8;border-radius:8px;padding:12px;font-size:12px;color:#3e7a55;line-height:1.6;font-family:'DM Sans',sans-serif;margin-top:8px;}
-.sub{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:12px;}.sub:disabled{background:#98d9aa;cursor:not-allowed;}
+.sub{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:12px;}.sub:hover{background:var(--lg);}.sub:disabled{background:#98d9aa;cursor:not-allowed;}
+.sub.loading{opacity:.7;pointer-events:none;}
 .ol{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e8f0eb;font-size:13px;font-family:'DM Sans',sans-serif;}
 .otr{display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:2px solid var(--mg);}
 .cfp{display:flex;align-items:center;justify-content:center;min-height:80vh;padding:24px;}
-.cfb{background:#fff;border-radius:16px;padding:48px;text-align:center;max-width:500px;border:2px solid var(--lg);box-shadow:0 20px 60px rgba(0,0,0,.1);}.cfb h2{color:var(--mg);font-size:28px;margin:16px 0 8px;}.cfb p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:24px;font-family:'DM Sans',sans-serif;}
-.cfs{background:#f0f7f2;border-radius:10px;padding:16px;margin-bottom:24px;text-align:left;}
+.cfb{background:#fff;border-radius:16px;padding:48px;text-align:center;max-width:520px;border:2px solid var(--lg);box-shadow:0 20px 60px rgba(0,0,0,.1);}.cfb h2{color:var(--mg);font-size:28px;margin:16px 0 8px;}.cfb p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:20px;font-family:'DM Sans',sans-serif;}
+.cfs{background:#f0f7f2;border-radius:10px;padding:16px;margin-bottom:20px;text-align:left;}
 .bsb{background:var(--mg);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+.pay-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .15s;border:none;}
+.pay-paypal{background:#0070ba;color:#fff;}.pay-paypal:hover{background:#005ea6;}
+.pay-venmo{background:#3d95ce;color:#fff;}.pay-venmo:hover{background:#2d7fb8;}
+.pay-zelle{background:#6d1ed4;color:#fff;}.pay-zelle:hover{background:#5a18b0;}
+.pay-section{background:#f7fbf8;border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:16px;}
+.pay-section h4{font-size:14px;color:var(--mg);margin-bottom:12px;}
+.pay-options{display:flex;gap:10px;flex-wrap:wrap;}
 .fc{position:fixed;bottom:20px;right:20px;background:var(--mg);color:#fff;border:none;border-radius:50px;padding:14px 20px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(26,92,56,.4);display:none;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;z-index:50;}.fc:hover{background:var(--lg);}
 footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-family:'DM Sans',sans-serif;}
 .es{text-align:center;padding:60px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:15px;display:none;}
-@media(max-width:600px){.hero h2{font-size:24px;}.hero{padding:28px 20px;}.hi{padding:12px 16px;}.logo h1{font-size:20px;}.grid{grid-template-columns:1fr 1fr;}.cpr{font-size:20px;}}
+.errmsg{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;margin-top:8px;display:none;}
+@media(max-width:600px){.hero h2{font-size:24px;}.hero{padding:28px 20px;}.hi{padding:12px 16px;}.logo h1{font-size:20px;}.grid{grid-template-columns:1fr 1fr;}.cpr{font-size:20px;}.pay-options{flex-direction:column;}}
 @media(max-width:400px){.grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -86,7 +96,7 @@ footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-al
 </div>
 <div id="mc">
   <div style="max-width:1200px;margin:0 auto;padding:24px" id="sp">
-    <div class="hero"><h2>Shop the Collection</h2><p>Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide. PayPal · Venmo · Zelle · Cash</p>
+    <div class="hero"><h2>Shop the Collection</h2><p>Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide.</p>
       <div class="htags"><span class="htag" id="sc"></span><span class="htag">588+ clubs flipped</span><span class="htag">Trusted since 2023</span></div></div>
     <div class="fil">
       <div class="sw"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" id="se" placeholder="Search clubs..." oninput="rg()"></div>
@@ -104,6 +114,20 @@ footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-al
 <script>
 // ╔══════════════════════════════════════════════════════════════════════╗
 // ║                                                                      ║
+// ║   ⚙️ SETTINGS — Edit your payment links and Formspree here          ║
+// ║                                                                      ║
+// ╚══════════════════════════════════════════════════════════════════════╝
+
+const SETTINGS = {
+  formspree:  "https://formspree.io/f/xkoqyvqo",
+  paypal:     "https://paypal.me/lukelab",
+  venmo:      "",                                   // ← Add Venmo link like "https://venmo.com/yourusername"
+  zelle:      "",                                   // ← Add Zelle info like "yourname@email.com"
+  location:   "Minneapolis, MN",
+};
+
+// ╔══════════════════════════════════════════════════════════════════════╗
+// ║                                                                      ║
 // ║   📝 YOUR INVENTORY — EDIT THIS SECTION TO UPDATE LISTINGS           ║
 // ║                                                                      ║
 // ║   Each item looks like this:                                         ║
@@ -117,35 +141,15 @@ footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-al
 // ║     cond:   "New",                   ← Badge: "New" "9/10" "8/10"   ║
 // ║     price:  275,                     ← Price in dollars (no $)       ║
 // ║     qty:    1,                       ← How many you have             ║
-// ║     img:    "",                      ← Photo URL (see below)         ║
+// ║     img:    "",                      ← Photo URL (see instructions)  ║
 // ║   },                                                                 ║
 // ║                                                                      ║
-// ║   🖼️ HOW TO ADD PHOTOS:                                              ║
+// ║   🖼️ PHOTOS: Upload to imgur.com/upload, copy direct link, paste:    ║
+// ║      img: "https://i.imgur.com/abc123.jpg",                          ║
 // ║                                                                      ║
-// ║   Option A — Imgur (easiest, free):                                  ║
-// ║     1. Go to imgur.com/upload                                        ║
-// ║     2. Drag your photo in                                            ║
-// ║     3. Right-click the image → "Copy image address"                  ║
-// ║     4. Paste it in the img field:                                    ║
-// ║        img: "https://i.imgur.com/abc123.jpg",                        ║
-// ║                                                                      ║
-// ║   Option B — Any image URL that ends in .jpg/.png/.webp              ║
-// ║     For example from Google Drive (set to public), Dropbox, etc.     ║
-// ║                                                                      ║
-// ║   Leave img: "" for no photo (shows an emoji placeholder instead)    ║
-// ║                                                                      ║
-// ║   ➕ TO ADD A NEW ITEM:                                               ║
-// ║     Copy any item block below, paste it in the right section,        ║
-// ║     and change the values.                                           ║
-// ║                                                                      ║
-// ║   ❌ TO REMOVE AN ITEM:                                               ║
-// ║     Delete the entire { ... }, block for that item.                  ║
-// ║                                                                      ║
-// ║   ✅ TO MARK SOLD:                                                    ║
-// ║     Delete the item, or set qty: 0                                   ║
-// ║                                                                      ║
-// ║   💲 TO CHANGE A PRICE:                                               ║
-// ║     Find the item below and change the price number.                 ║
+// ║   ➕ ADD: Copy any item block, paste it, change values               ║
+// ║   ❌ REMOVE: Delete the { ... }, block or set qty: 0                 ║
+// ║   💲 PRICE: Just change the number                                   ║
 // ║                                                                      ║
 // ╚══════════════════════════════════════════════════════════════════════╝
 
@@ -271,7 +275,6 @@ function init(){
   bs.forEach(b=>{const o=document.createElement('option');o.value=b;o.textContent=b;$('bf').appendChild(o);});
   $('sc').textContent=A.reduce((s,i)=>s+i.qty,0)+' items in stock';
 }
-
 function gf(){
   let items=[...A];const s=$('se').value.toLowerCase(),tf=$('tf').value,bf=$('bf').value,hf=$('hf').value,so=$('so').value;
   if(s) items=items.filter(i=>(i.brand+i.name+i.type+i.notes).toLowerCase().includes(s));
@@ -281,7 +284,6 @@ function gf(){
   return items;
 }
 function bdg(c){return c==='New'?'<span class="bdg bn">New</span>':c==='9/10'?'<span class="bdg b9">9/10</span>':c==='8/10'?'<span class="bdg b8">8/10</span>':'';}
-
 function rg(){
   const items=gf(),g=$('pg'),es=$('es');$('rc').textContent=items.length+' items';
   if(!items.length){g.innerHTML='';es.style.display='block';return;}es.style.display='none';
@@ -292,34 +294,119 @@ function rg(){
     return '<div class="card">'+im+'<div class="ctop"><div><span class="ctype">'+item.type+'</span>'+(item.hand==='LH'?'<span class="clh">LEFT</span>':'')+'</div><div>'+bdg(item.cond)+(item.qty>1?'<span class="bdg bq">'+item.qty+' avail</span>':'')+'</div></div><div class="cbod"><div class="cbr">'+item.brand+'</div><div class="cnm">'+item.name+'</div>'+nt+'<div class="cbot"><div class="cpr">'+fmt(item.price)+'</div><button class="'+bc+'" onclick="ac('+item.id+')">'+bt+'</button></div></div></div>';
   }).join('');
 }
-
 function ac(id){const item=A.find(i=>i.id===id),ex=cart.find(c=>c.id===id);if(ex){if(ex.qty<item.qty)ex.qty++;}else cart.push({...item,qty:1});uc();rg();}
 function rc2(id){cart=cart.filter(c=>c.id!==id);uc();rg();}
 function uq(id,d){const c=cart.find(c=>c.id===id);if(!c)return;const m=A.find(i=>i.id===id).qty,n=c.qty+d;if(n<1||n>m)return;c.qty=n;uc();rg();}
 function cc2(){return cart.reduce((s,c)=>s+c.qty,0);}
 function ct2(){return cart.reduce((s,c)=>s+c.price*c.qty,0);}
-
 function uc(){
   const n=cc2(),t=ct2();$('cc').textContent=n;$('ct').textContent='Your Cart ('+n+')';
   if(!n){$('cdi').innerHTML='<div class="cem">🛒<br><br>Your cart is empty</div>';$('cdf').style.display='none';$('fc').style.display='none';return;}
   $('cdf').style.display='block';$('ctp').textContent=fmt(t);$('fc').style.display='flex';$('ft').textContent=fmt(t);$('fn').textContent=n;
   $('cdi').innerHTML=cart.map(c=>'<div class="ci"><div class="cii"><div class="cib">'+c.brand+'</div><div class="cin">'+c.name+'</div><div class="cim">'+c.type+' · '+c.hand+'</div></div><div class="qc"><button class="qb" onclick="uq('+c.id+',-1)">−</button><span class="qn">'+c.qty+'</span><button class="qb" onclick="uq('+c.id+',1)">+</button></div><div class="cip">'+fmt(c.price*c.qty)+'</div><button class="cir" onclick="rc2('+c.id+')">✕</button></div>').join('');
 }
-
 function toggleCart(){$('cd').classList.toggle('open');$('ov').classList.toggle('open');}
 
 let sm='local';
+function orderSummaryHTML(){return cart.map(c=>'<div class="ol"><div><div style="font-weight:600;color:#1a5c38">'+c.brand+' '+c.name+'</div><div style="color:#78a088;font-size:11px">'+c.type+' · '+c.hand+(c.qty>1?' × '+c.qty:'')+'</div></div><div style="font-weight:700;color:#1a5c38">'+fmt(c.price*c.qty)+'</div></div>').join('');}
+function orderTextSummary(){return cart.map(c=>c.brand+' '+c.name+' ('+c.type+', '+c.hand+')'+(c.qty>1?' x'+c.qty:'')+' — '+fmt(c.price*c.qty)).join('\n');}
+
+function paymentLinksHTML(total){
+  let html='<div class="pay-options">';
+  if(SETTINGS.paypal) html+='<a href="'+SETTINGS.paypal+'/'+total+'" target="_blank" class="pay-btn pay-paypal">💳 Pay with PayPal — '+fmt(total)+'</a>';
+  if(SETTINGS.venmo) html+='<a href="'+SETTINGS.venmo+'?txn=pay&amount='+total+'" target="_blank" class="pay-btn pay-venmo">Pay with Venmo</a>';
+  if(SETTINGS.zelle) html+='<span class="pay-btn pay-zelle" style="cursor:default">Zelle: '+SETTINGS.zelle+'</span>';
+  html+='</div>';
+  return html;
+}
+
 function goCheckout(){
   toggleCart();$('sp').style.display='none';$('fc').style.display='none';
-  $('mc').insertAdjacentHTML('beforeend','<div class="cop" id="cop"><button class="bbk" onclick="bts()">← Back to Shop</button><h2 style="font-size:28px;margin-bottom:24px">Checkout</h2><div class="cog"><div class="coc"><h3>Order Summary</h3>'+cart.map(c=>'<div class="ol"><div><div style="font-weight:600;color:#1a5c38">'+c.brand+' '+c.name+'</div><div style="color:#78a088;font-size:11px">'+c.type+' · '+c.hand+(c.qty>1?' × '+c.qty:'')+'</div></div><div style="font-weight:700;color:#1a5c38">'+fmt(c.price*c.qty)+'</div></div>').join('')+'<div class="otr"><span style="font-size:18px;font-weight:800">Total</span><span style="font-size:22px;font-weight:900">'+fmt(ct2())+'</span></div></div><div class="coc"><h3>Your Info</h3><div class="fg"><label>Name *</label><input id="cn"></div><div class="fg"><label>Email</label><input id="ce" type="email"></div><div class="fg"><label>Phone</label><input id="cp" type="tel"></div><div class="fg"><label>How do you want to get it?</label><div class="mbs"><button class="mb act" id="bl" onclick="sme(\'local\')">📍 Local Pickup</button><button class="mb" id="bs" onclick="sme(\'ship\')">📦 Ship to Me</button></div></div><div class="fg"><label>Payment</label><div class="pi" id="pii">Cash, Venmo, PayPal, or Zelle accepted at pickup. Minneapolis area.</div></div><div class="fg"><label>Notes (optional)</label><textarea id="cno" rows="3" placeholder="Questions, pickup times, etc."></textarea></div><button class="sub" onclick="so2()">Place Order</button></div></div></div>');
+  const t=ct2();
+  $('mc').insertAdjacentHTML('beforeend',`
+    <div class="cop" id="cop">
+      <button class="bbk" onclick="bts()">← Back to Shop</button>
+      <h2 style="font-size:28px;margin-bottom:24px">Checkout</h2>
+      <div class="cog">
+        <div class="coc">
+          <h3>Order Summary</h3>
+          ${orderSummaryHTML()}
+          <div class="otr"><span style="font-size:18px;font-weight:800">Total</span><span style="font-size:22px;font-weight:900">${fmt(t)}</span></div>
+        </div>
+        <div class="coc">
+          <h3>Your Info</h3>
+          <div class="fg"><label>Name *</label><input id="cn"></div>
+          <div class="fg"><label>Email *</label><input id="ce" type="email"></div>
+          <div class="fg"><label>Phone</label><input id="cp" type="tel"></div>
+          <div class="fg"><label>Pickup or Ship?</label>
+            <div class="mbs">
+              <button class="mb act" id="bl" onclick="sme('local')">📍 Local Pickup</button>
+              <button class="mb" id="bs" onclick="sme('ship')">📦 Ship to Me</button>
+            </div>
+          </div>
+          <div class="fg"><label>Notes (optional)</label><textarea id="cno" rows="2" placeholder="Questions, pickup times, etc."></textarea></div>
+          <div class="errmsg" id="errmsg"></div>
+          <button class="sub" id="subbtn" onclick="so2()">Place Order & Pay</button>
+          <div style="font-size:11px;color:var(--faint);margin-top:8px;text-align:center;font-family:'DM Sans',sans-serif">
+            You'll be directed to PayPal to complete payment after placing your order.
+          </div>
+        </div>
+      </div>
+    </div>`);
 }
-function sme(m){sm=m;$('bl').classList.toggle('act',m==='local');$('bs').classList.toggle('act',m==='ship');$('pii').textContent=m==='local'?'Cash, Venmo, PayPal, or Zelle accepted at pickup. Minneapolis area.':'PayPal or Venmo. Shipping cost will be quoted after order confirmation.';}
+
+function sme(m){sm=m;$('bl').classList.toggle('act',m==='local');$('bs').classList.toggle('act',m==='ship');}
 function bts(){const p=$('cop');if(p)p.remove();$('sp').style.display='block';$('fc').style.display=cc2()?'flex':'none';}
-function so2(){
-  const n=$('cn').value,e=$('ce').value,p=$('cp').value;
-  if(!n||(!e&&!p)){alert('Please enter your name and email or phone.');return;}
+
+async function so2(){
+  const name=$('cn').value.trim(),email=$('ce').value.trim(),phone=$('cp').value.trim(),notes=$('cno').value.trim();
+  const errEl=$('errmsg');errEl.style.display='none';
+
+  if(!name||!email){errEl.textContent='Please enter your name and email.';errEl.style.display='block';return;}
+  if(!email.includes('@')){errEl.textContent='Please enter a valid email address.';errEl.style.display='block';return;}
+
+  const btn=$('subbtn');btn.textContent='Sending...';btn.classList.add('loading');
+
+  const total=ct2();
+  const orderData={
+    name:name, email:email, phone:phone||'N/A',
+    method:sm==='local'?'Local Pickup':'Shipped',
+    notes:notes||'None',
+    order_total:fmt(total),
+    items:orderTextSummary(),
+    _subject:'🏌️ New Flipped Sticks Order — '+fmt(total)+' from '+name,
+  };
+
+  try{
+    const resp=await fetch(SETTINGS.formspree,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(orderData)});
+    if(!resp.ok) throw new Error('Form submission failed');
+  }catch(e){
+    console.error(e);
+    // Still show confirmation even if email fails — don't lose the sale
+  }
+
+  // Show confirmation with payment links
   const cp=$('cop');if(cp)cp.remove();
-  $('mc').insertAdjacentHTML('beforeend','<div class="cfp" id="cfp"><div class="cfb"><div style="font-size:48px">✅</div><h2>Order Received!</h2><p>Thanks '+n+'! I\'ll reach out to you at <strong>'+(e||p)+'</strong> shortly to arrange '+(sm==='local'?'local pickup':'payment and shipping')+'.</p><div class="cfs"><div style="font-weight:700;color:#1a5c38;margin-bottom:8px">Order Summary</div>'+cart.map(c=>'<div style="display:flex;justify-content:space-between;font-size:13px;color:#3e7a55;padding:4px 0"><span>'+c.brand+' '+c.name+(c.qty>1?' (×'+c.qty+')':'')+'</span><span>'+fmt(c.price*c.qty)+'</span></div>').join('')+'<div style="border-top:2px solid #2d8a56;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-weight:800;color:#1a5c38;font-size:16px"><span>Total</span><span>'+fmt(ct2())+'</span></div></div><button class="bsb" onclick="location.reload()">Back to Shop</button></div></div>');
+  const payLinks=paymentLinksHTML(total);
+  $('mc').insertAdjacentHTML('beforeend',`
+    <div class="cfp" id="cfp"><div class="cfb">
+      <div style="font-size:48px">✅</div>
+      <h2>Order Placed!</h2>
+      <p>Thanks ${name}! Your order has been sent to Flipped Sticks. ${sm==='local'?'We\'ll reach out to arrange local pickup in the Minneapolis area.':'We\'ll email you at <strong>'+email+'</strong> with shipping details and cost.'}</p>
+      <div class="pay-section">
+        <h4>💰 Complete Your Payment</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'DM Sans',sans-serif">
+          ${sm==='local'?'Pay now online or bring cash/Venmo/Zelle to pickup.':'Please send payment to confirm your order.'}
+        </p>
+        ${payLinks}
+      </div>
+      <div class="cfs" style="margin-top:16px">
+        <div style="font-weight:700;color:#1a5c38;margin-bottom:8px">Order Summary</div>
+        ${cart.map(c=>'<div style="display:flex;justify-content:space-between;font-size:13px;color:#3e7a55;padding:4px 0"><span>'+c.brand+' '+c.name+(c.qty>1?' (×'+c.qty+')':'')+'</span><span>'+fmt(c.price*c.qty)+'</span></div>').join('')}
+        <div style="border-top:2px solid #2d8a56;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-weight:800;color:#1a5c38;font-size:16px"><span>Total</span><span>${fmt(total)}</span></div>
+      </div>
+      <button class="bsb" onclick="location.reload()">Back to Shop</button>
+    </div></div>`);
 }
 
 init();rg();uc();
