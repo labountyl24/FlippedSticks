@@ -8,6 +8,14 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}body{font-family:'DM Sans',sans-serif;background:#f0f5f1;min-height:100vh;color:#1a5c38;}
 :root{--mg:#1a5c38;--lg:#2d8a56;--pale:#d8f3dc;--border:#d0eadb;--muted:#5a7d66;--faint:#78a088;}
+#login-gate{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;}
+.login-box{background:#fff;border-radius:16px;padding:48px;text-align:center;max-width:400px;width:100%;border:2px solid var(--lg);box-shadow:0 20px 60px rgba(0,0,0,.1);}
+.login-box h2{color:var(--mg);font-size:24px;margin-bottom:4px;}.login-box p{color:var(--faint);font-size:13px;margin-bottom:24px;}
+.login-box input{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border);font-size:14px;font-family:inherit;text-align:center;margin-bottom:12px;}
+.login-box input:focus{outline:none;border-color:var(--mg);}
+.login-box button{width:100%;background:var(--mg);color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}.login-box button:hover{background:var(--lg);}
+.login-err{color:#991b1b;font-size:12px;margin-top:8px;display:none;}
+#admin-content{display:none;}
 header{background:linear-gradient(135deg,#0d3320,#1a5c38,#2d8a56);padding:16px 24px;border-bottom:3px solid #45a86e;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
 header h1{font-size:20px;font-weight:800;color:#fff;}header span{font-size:12px;color:#98d9aa;}
 .tabs{display:flex;gap:4px;margin:20px 24px 0;}
@@ -47,6 +55,19 @@ header h1{font-size:20px;font-weight:800;color:#fff;}header span{font-size:12px;
 </style>
 </head>
 <body>
+<!-- PASSWORD GATE -->
+<div id="login-gate">
+  <div class="login-box">
+    <h2>🏌️ Admin Access</h2>
+    <p>Enter your password to manage inventory</p>
+    <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">Log In</button>
+    <div class="login-err" id="pw-err">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- ADMIN CONTENT (hidden until authenticated) -->
+<div id="admin-content">
 <header>
   <div><h1>🏌️ Flipped Sticks Admin</h1><span>Inventory & Order Management</span></div>
   <a href="index.html" style="color:#98d9aa;font-size:12px;text-decoration:none">← Back to Shop</a>
@@ -105,6 +126,34 @@ header h1{font-size:20px;font-weight:800;color:#fff;}header span{font-size:12px;
     <button class="cancel-btn" onclick="clearForm()">Cancel</button>
   </div>
 </div>
+</div><!-- end admin-content -->
+
+<script>
+// ╔════════════════════════════════════════════════════════════╗
+// ║  🔒 ADMIN PASSWORD — Change this to your own password     ║
+// ╚════════════════════════════════════════════════════════════╝
+const ADMIN_PASSWORD = "flippedsticks2024";
+// ╔════════════════════════════════════════════════════════════╝
+
+function checkPw() {
+  const input = document.getElementById('pw-input').value;
+  if (input === ADMIN_PASSWORD) {
+    document.getElementById('login-gate').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+    sessionStorage.setItem('fs-admin', 'true');
+    loadInv();
+  } else {
+    document.getElementById('pw-err').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+// Auto-login if already authenticated this session
+if (sessionStorage.getItem('fs-admin') === 'true') {
+  document.getElementById('login-gate').style.display = 'none';
+  document.getElementById('admin-content').style.display = 'block';
+}
+</script>
 
 <script>
 const SUPABASE_URL = "https://izmgscqvoiqjadqerazo.supabase.co";
