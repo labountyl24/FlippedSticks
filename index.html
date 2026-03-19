@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flipped Sticks — Premium Pre-Owned Golf</title>
-<meta name="description" content="Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide. Putters, drivers, irons, shafts, headcovers and more.">
+<meta name="description" content="Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Playfair Display',Georgia,serif;background:#f0f5f1;min-height:100vh;color:#1a5c38;}
@@ -38,7 +38,9 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 .cnt{font-size:11px;color:var(--faint);font-family:'DM Sans',sans-serif;margin-bottom:6px;}
 .cbot{display:flex;justify-content:space-between;align-items:end;margin-top:auto;padding-top:8px;}
 .cpr{font-size:24px;font-weight:900;color:var(--mg);}
-.abtn{background:var(--mg);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.abtn:hover{background:var(--lg);}.abtn.ic{background:var(--pale);color:var(--mg);border:2px solid var(--mg);}
+.stk{font-size:11px;color:var(--faint);font-family:'DM Sans',sans-serif;margin-top:2px;}
+.stk.low{color:#dc6b4a;font-weight:600;}
+.abtn{background:var(--mg);color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}.abtn:hover{background:var(--lg);}.abtn.ic{background:var(--pale);color:var(--mg);border:2px solid var(--mg);}.abtn:disabled{background:#ccc;cursor:not-allowed;}
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:199;display:none;}.ov.open{display:block;}
 .cd{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100vh;background:#fff;z-index:200;box-shadow:-8px 0 30px rgba(0,0,0,.15);display:flex;flex-direction:column;transition:right .3s;}.cd.open{right:0;}
 .cdh{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}.cdh h3{font-size:18px;color:var(--mg);}
@@ -60,8 +62,7 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 .fg input,.fg textarea{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;font-family:'DM Sans',sans-serif;}.fg textarea{resize:vertical;}
 .mbs{display:flex;gap:8px;margin-top:8px;}.mb{flex:1;padding:12px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;border:1px solid var(--border);background:#fff;color:var(--muted);text-align:center;transition:all .15s;}.mb.act{border:2px solid var(--mg);background:var(--pale);color:var(--mg);}
 .pi{background:#f7fbf8;border-radius:8px;padding:12px;font-size:12px;color:#3e7a55;line-height:1.6;font-family:'DM Sans',sans-serif;margin-top:8px;}
-.sub{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:12px;}.sub:hover{background:var(--lg);}.sub:disabled{background:#98d9aa;cursor:not-allowed;}
-.sub.loading{opacity:.7;pointer-events:none;}
+.sub{width:100%;background:var(--mg);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:12px;}.sub:hover{background:var(--lg);}.sub:disabled{background:#98d9aa;cursor:not-allowed;}.sub.ld{opacity:.7;pointer-events:none;}
 .ol{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e8f0eb;font-size:13px;font-family:'DM Sans',sans-serif;}
 .otr{display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:2px solid var(--mg);}
 .cfp{display:flex;align-items:center;justify-content:center;min-height:80vh;padding:24px;}
@@ -70,8 +71,6 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 .bsb{background:var(--mg);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
 .pay-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .15s;border:none;}
 .pay-paypal{background:#0070ba;color:#fff;}.pay-paypal:hover{background:#005ea6;}
-.pay-venmo{background:#3d95ce;color:#fff;}.pay-venmo:hover{background:#2d7fb8;}
-.pay-zelle{background:#6d1ed4;color:#fff;}.pay-zelle:hover{background:#5a18b0;}
 .pay-section{background:#f7fbf8;border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:16px;}
 .pay-section h4{font-size:14px;color:var(--mg);margin-bottom:12px;}
 .pay-options{display:flex;gap:10px;flex-wrap:wrap;}
@@ -79,6 +78,9 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-family:'DM Sans',sans-serif;}
 .es{text-align:center;padding:60px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:15px;display:none;}
 .errmsg{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;padding:10px 14px;border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;margin-top:8px;display:none;}
+.loader{text-align:center;padding:60px;color:var(--faint);font-family:'DM Sans',sans-serif;font-size:15px;}
+.loader::after{content:'';display:block;width:32px;height:32px;margin:16px auto;border:3px solid var(--border);border-top-color:var(--mg);border-radius:50%;animation:spin .6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:600px){.hero h2{font-size:24px;}.hero{padding:28px 20px;}.hi{padding:12px 16px;}.logo h1{font-size:20px;}.grid{grid-template-columns:1fr 1fr;}.cpr{font-size:20px;}.pay-options{flex-direction:column;}}
 @media(max-width:400px){.grid{grid-template-columns:1fr;}}
 </style>
@@ -105,311 +107,195 @@ footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-al
       <select id="hf" onchange="rg()"><option value="All">All Hands</option><option value="RH">Right Hand</option><option value="LH">Left Hand</option></select>
       <select id="so" onchange="rg()"><option value="price-desc">Price: High → Low</option><option value="price-asc">Price: Low → High</option><option value="brand">Brand A–Z</option><option value="type">Type A–Z</option></select>
     </div>
-    <div class="rc" id="rc"></div><div class="grid" id="pg"></div><div id="es" class="es">🏌️<br>No clubs match your filters.</div>
+    <div class="rc" id="rc"></div>
+    <div id="loader" class="loader">Loading inventory...</div>
+    <div class="grid" id="pg"></div>
+    <div id="es" class="es">🏌️<br>No clubs match your filters.</div>
     <footer><div style="font-size:18px;font-weight:800;font-family:'Playfair Display',serif;margin-bottom:4px">FLIPPED STICKS</div><div style="font-size:12px;color:var(--faint)">Minneapolis, MN · PayPal · Venmo · Zelle · Cash</div><div style="font-size:11px;color:#a8b8a0;margin-top:8px">588+ clubs sold · Trusted local seller since 2023</div></footer>
   </div>
 </div>
 <button class="fc" id="fc" onclick="toggleCart()">🛒 <span id="ft">$0</span> (<span id="fn">0</span>)</button>
 
 <script>
-// ╔══════════════════════════════════════════════════════════════════════╗
-// ║                                                                      ║
-// ║   ⚙️ SETTINGS — Edit your payment links and Formspree here          ║
-// ║                                                                      ║
-// ╚══════════════════════════════════════════════════════════════════════╝
+// ╔════════════════════════════════════════════════════════════╗
+// ║  ⚙️ SETTINGS                                              ║
+// ╚════════════════════════════════════════════════════════════╝
+const SUPABASE_URL = "https://izmgscqvoiqjadqerazo.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6bWdzY3F2b2lxamFkcWVyYXpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDE5ODgsImV4cCI6MjA4OTUxNzk4OH0.IoxhwUABl-AbRhZl6iJqQX0BzUPQi54jwS86rdX3z3g";
+const FORMSPREE = "https://formspree.io/f/xkoqyvqo";
+const PAYPAL = "https://paypal.me/lukelab";
+const VENMO = "";
+const ZELLE = "";
 
-const SETTINGS = {
-  formspree:  "https://formspree.io/f/xkoqyvqo",
-  paypal:     "https://paypal.me/lukelab",
-  venmo:      "",                                   // ← Add Venmo link like "https://venmo.com/yourusername"
-  zelle:      "",                                   // ← Add Zelle info like "yourname@email.com"
-  location:   "Minneapolis, MN",
+// ╔════════════════════════════════════════════════════════════╗
+// ║  Don't edit below this line                                ║
+// ╚════════════════════════════════════════════════════════════╝
+const SB = {
+  async get(table, query='') {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    return r.json();
+  },
+  async patch(table, id, data) {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+      method: 'PATCH', headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify(data)
+    });
+    return r.ok;
+  },
+  async post(table, data) {
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: 'POST', headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
+      body: JSON.stringify(data)
+    });
+    return r.json();
+  }
 };
 
-// ╔══════════════════════════════════════════════════════════════════════╗
-// ║                                                                      ║
-// ║   📝 YOUR INVENTORY — EDIT THIS SECTION TO UPDATE LISTINGS           ║
-// ║                                                                      ║
-// ║   Each item looks like this:                                         ║
-// ║                                                                      ║
-// ║   {                                                                  ║
-// ║     brand:  "Taylormade",            ← Brand name                    ║
-// ║     name:   "Spider Tour X 34in",    ← Model name                   ║
-// ║     type:   "Putter",                ← Type (used for filters)       ║
-// ║     hand:   "RH",                    ← "RH" or "LH"                 ║
-// ║     notes:  "9/10 cond, custom grip",← Any details for buyer        ║
-// ║     cond:   "New",                   ← Badge: "New" "9/10" "8/10"   ║
-// ║     price:  275,                     ← Price in dollars (no $)       ║
-// ║     qty:    1,                       ← How many you have             ║
-// ║     img:    "",                      ← Photo URL (see instructions)  ║
-// ║   },                                                                 ║
-// ║                                                                      ║
-// ║   🖼️ PHOTOS: Upload to imgur.com/upload, copy direct link, paste:    ║
-// ║      img: "https://i.imgur.com/abc123.jpg",                          ║
-// ║                                                                      ║
-// ║   ➕ ADD: Copy any item block, paste it, change values               ║
-// ║   ❌ REMOVE: Delete the { ... }, block or set qty: 0                 ║
-// ║   💲 PRICE: Just change the number                                   ║
-// ║                                                                      ║
-// ╚══════════════════════════════════════════════════════════════════════╝
+let ITEMS = [];
+let cart = [];
+const $ = id => document.getElementById(id);
+function fmt(n) { return "$" + n.toLocaleString(); }
+const TE = {"Putter":"🏌️","Driver":"💥","Irons Set":"⛳","Wedge":"🎯","Fairway Wood":"🌲","Driver Shaft":"🔧","Headcover":"🧢","Golf Bag":"🎒","Hybrid":"🔀","Shaft":"🔧","Golf Set":"📦","Putter Shaft":"🔧","Driving Iron":"⚡","Single Iron":"1️⃣"};
 
-const INVENTORY = [
-
-  // ── IRONS SETS ─────────────────────────────────────
-  { brand: "Taylormade", name: "Battleworn P7CBs", type: "Irons Set", hand: "RH", notes: "NEW", cond: "New", price: 1200, qty: 1, img: "" },
-  { brand: "Taylormade", name: "P790s", type: "Irons Set", hand: "RH", notes: "NEW", cond: "New", price: 1150, qty: 1, img: "" },
-
-  // ── DRIVERS ────────────────────────────────────────
-  { brand: "Taylormade", name: "Qi4D 9* Max", type: "Driver", hand: "RH", notes: "NEW", cond: "New", price: 537, qty: 2, img: "" },
-  { brand: "Taylormade", name: "Qi4D 10.5* Core", type: "Driver", hand: "RH", notes: "", cond: "", price: 500, qty: 1, img: "" },
-  { brand: "Callaway", name: "Ai Smoke Mini Driver", type: "Driver", hand: "RH", notes: "Mini Driver", cond: "", price: 425, qty: 1, img: "" },
-  { brand: "Titleist", name: "TSR3 8 degree", type: "Driver", hand: "RH", notes: "Velo Black Stiff", cond: "", price: 400, qty: 1, img: "" },
-  { brand: "Srixon", name: "ZXI Driver", type: "Driver", hand: "RH", notes: "Red Velo", cond: "", price: 388, qty: 1, img: "" },
-  { brand: "Cobra", name: "LTDx 9 degree", type: "Driver", hand: "LH", notes: "Velocore", cond: "", price: 262, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Qi10 12*", type: "Driver", hand: "RH", notes: "", cond: "", price: 238, qty: 1, img: "" },
-  { brand: "Titleist", name: "TSI2 Driver", type: "Driver", hand: "RH", notes: "Rogue MSI stiff", cond: "", price: 200, qty: 1, img: "" },
-
-  // ── PUTTERS ────────────────────────────────────────
-  { brand: "Taylormade", name: "ZT Blacked", type: "Putter", hand: "RH", notes: "NEW", cond: "New", price: 400, qty: 4, img: "" },
-  { brand: "SIK", name: "Bad2", type: "Putter", hand: "RH", notes: "", cond: "", price: 350, qty: 1, img: "" },
-  { brand: "Scotty Cameron", name: "2024 Phantom 11", type: "Putter", hand: "RH", notes: "9/10 cond", cond: "9/10", price: 338, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Spider Tour X L Neck 34\"", type: "Putter", hand: "RH", notes: "NEW", cond: "New", price: 275, qty: 1, img: "" },
-  { brand: "SIK", name: "Flo armlock", type: "Putter", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 262, qty: 1, img: "" },
-  { brand: "Bettinardi", name: "Studio Stock #35", type: "Putter", hand: "RH", notes: "custom finish head only", cond: "", price: 225, qty: 1, img: "" },
-  { brand: "Bettinardi", name: "BBFortyFive", type: "Putter", hand: "RH", notes: "Mint", cond: "", price: 225, qty: 1, img: "" },
-  { brand: "Toulon", name: "Chicago", type: "Putter", hand: "RH", notes: "head only", cond: "", price: 225, qty: 1, img: "" },
-  { brand: "Toulon", name: "San Diego + Masters Accra", type: "Putter", hand: "RH", notes: "Custom Build", cond: "", price: 212, qty: 1, img: "" },
-  { brand: "SIK", name: "Flo C Flange", type: "Putter", hand: "RH", notes: "9/10 cond", cond: "9/10", price: 200, qty: 1, img: "" },
-  { brand: "Taylormade", name: "TP Soto Shamrock", type: "Putter", hand: "RH", notes: "Shamrock", cond: "", price: 162, qty: 1, img: "" },
-  { brand: "Taylormade", name: "TP Juno Shamrock", type: "Putter", hand: "RH", notes: "Shamrock", cond: "", price: 162, qty: 1, img: "" },
-  { brand: "Taylormade", name: "TP Soto Ice Blue", type: "Putter", hand: "RH", notes: "Ice Blue", cond: "", price: 162, qty: 1, img: "" },
-  { brand: "Taylormade", name: "TP Soto Rare Milled", type: "Putter", hand: "RH", notes: "Rare Milled", cond: "", price: 162, qty: 1, img: "" },
-  { brand: "Odyssey", name: "Armlock V-Line", type: "Putter", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 150, qty: 1, img: "" },
-  { brand: "Taylormade", name: "GT Rollback", type: "Putter", hand: "LH", notes: "New", cond: "New", price: 138, qty: 10, img: "" },
-  { brand: "Ping", name: "Anser", type: "Putter", hand: "RH", notes: "NEW", cond: "New", price: 138, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Reserve Notchback", type: "Putter", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 138, qty: 1, img: "" },
-  { brand: "Taylormade", name: "GT Notchback 35\"", type: "Putter", hand: "LH", notes: "NEW", cond: "New", price: 130, qty: 1, img: "" },
-  { brand: "Taylormade", name: "GT Rollback 34\"", type: "Putter", hand: "LH", notes: "NEW", cond: "New", price: 130, qty: 1, img: "" },
-  { brand: "Cleveland", name: "Huntington Beach", type: "Putter", hand: "RH", notes: "blade 5/10", cond: "", price: 50, qty: 1, img: "" },
-
-  // ── WEDGES ─────────────────────────────────────────
-  { brand: "Taylormade", name: "MG5 Wedge Set", type: "Wedge", hand: "RH", notes: "New, 50-54-58", cond: "New", price: 488, qty: 1, img: "" },
-  { brand: "Taylormade", name: "MG2 58 degree", type: "Wedge", hand: "RH", notes: "", cond: "", price: 60, qty: 1, img: "" },
-
-  // ── FAIRWAY WOODS ──────────────────────────────────
-  { brand: "Callaway", name: "Ai Smoke 3-wood head", type: "Fairway Wood", hand: "LH", notes: "9/10 cond", cond: "9/10", price: 175, qty: 1, img: "" },
-  { brand: "Callaway", name: "Rogue ST Max D 3-wood", type: "Fairway Wood", hand: "LH", notes: "New", cond: "New", price: 125, qty: 1, img: "" },
-  { brand: "Callaway", name: "Rogue ST LS 3-wood", type: "Fairway Wood", hand: "LH", notes: "New", cond: "New", price: 125, qty: 1, img: "" },
-  { brand: "Callaway", name: "Epic 3 wood", type: "Fairway Wood", hand: "RH", notes: "Head only", cond: "", price: 88, qty: 1, img: "" },
-
-  // ── HYBRIDS ────────────────────────────────────────
-  { brand: "Taylormade", name: "Stealth 2 3 hybrid head", type: "Hybrid", hand: "LH", notes: "New", cond: "New", price: 125, qty: 1, img: "" },
-  { brand: "Callaway", name: "Epic Flash", type: "Hybrid", hand: "RH", notes: "4/10 cond", cond: "", price: 55, qty: 1, img: "" },
-
-  // ── DRIVER SHAFTS ──────────────────────────────────
-  { brand: "Taylormade", name: "Ventus Velocore Black", type: "Driver Shaft", hand: "RH", notes: "NEW 6-S", cond: "New", price: 212, qty: 4, img: "" },
-  { brand: "Tour AD", name: "Driver Shaft xstiff", type: "Driver Shaft", hand: "RH", notes: "9/10 cond", cond: "9/10", price: 162, qty: 1, img: "" },
-  { brand: "Hzrdus", name: "Smoke RDX Green", type: "Driver Shaft", hand: "RH", notes: "No adapter", cond: "", price: 125, qty: 1, img: "" },
-  { brand: "Ping", name: "Atmos Tour Spec Reg Flex", type: "Driver Shaft", hand: "RH", notes: "Fujikura", cond: "", price: 90, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Aldila Rogue MSI 70 S", type: "Driver Shaft", hand: "RH", notes: "", cond: "", price: 90, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Fuji Air Speeder 45s", type: "Driver Shaft", hand: "RH", notes: "", cond: "", price: 90, qty: 1, img: "" },
-  { brand: "Hzrdus", name: "RDX Smoke Red", type: "Driver Shaft", hand: "RH", notes: "Ping adapter", cond: "", price: 80, qty: 3, img: "" },
-  { brand: "Mitsubishi", name: "Tensei Black", type: "Driver Shaft", hand: "RH", notes: "TM Adapter", cond: "", price: 80, qty: 1, img: "" },
-  { brand: "Mitsubishi", name: "Tensei Orange", type: "Driver Shaft", hand: "RH", notes: "Ping adapter", cond: "", price: 80, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Reax", type: "Driver Shaft", hand: "RH", notes: "stiff", cond: "", price: 75, qty: 1, img: "" },
-
-  // ── SHAFTS ─────────────────────────────────────────
-  { brand: "LA GOLF", name: "SOHO .370 34'", type: "Shaft", hand: "RH", notes: "", cond: "", price: 188, qty: 1, img: "" },
-  { brand: "Tour AD", name: "Driver Shaft", type: "Shaft", hand: "RH", notes: "Tour AD", cond: "", price: 162, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Aldila Rogue 60TX", type: "Shaft", hand: "RH", notes: "", cond: "", price: 90, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Recoil F5 41\" shaft", type: "Shaft", hand: "RH", notes: "New, uncut", cond: "New", price: 62, qty: 1, img: "" },
-
-  // ── PUTTER SHAFTS ──────────────────────────────────
-  { brand: "LA GOLF", name: "LAGP SOHO", type: "Putter Shaft", hand: "RH", notes: "White", cond: "", price: 175, qty: 1, img: "" },
-  { brand: "BGT", name: "Stability Polar shaft", type: "Putter Shaft", hand: "RH", notes: "9/10, .370", cond: "9/10", price: 138, qty: 1, img: "" },
-  { brand: "LA GOLF", name: "Putter Shaft SOHO", type: "Putter Shaft", hand: "RH", notes: "8/10 cond", cond: "8/10", price: 125, qty: 1, img: "" },
-
-  // ── HEADCOVERS ─────────────────────────────────────
-  { brand: "Tour Trash", name: "Blade Headcover", type: "Headcover", hand: "RH", notes: "Rare", cond: "", price: 425, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Vault - Arachnid", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 115, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Vault - The Don Palm Trees", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 100, qty: 2, img: "" },
-  { brand: "Taylormade", name: "Vault - California Dreaming", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 100, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Vault - Festive Flannel", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 95, qty: 2, img: "" },
-  { brand: "Taylormade", name: "Vault - Sunset", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 88, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Vault - Coffee and Clubs", type: "Headcover", hand: "RH", notes: "New - Blade", cond: "New", price: 85, qty: 3, img: "" },
-  { brand: "Taylormade", name: "Vault - Pizza", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 75, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Pinehurst 24' Hybrid HC", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 70, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Hot n Fresh Pizza HC", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 62, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Vault - Lawnchairs", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 55, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Vault - Bacon and Eggs", type: "Headcover", hand: "RH", notes: "New - Blade", cond: "New", price: 55, qty: 1, img: "" },
-  { brand: "Taylormade", name: "Coffee n Clubs HC", type: "Headcover", hand: "RH", notes: "NEW", cond: "New", price: 45, qty: 2, img: "" },
-  { brand: "Taylormade", name: "Vault - Ailsa 8", type: "Headcover", hand: "RH", notes: "New - Mallet", cond: "New", price: 35, qty: 1, img: "" },
-
-  // ── GOLF BAGS ──────────────────────────────────────
-  { brand: "Callaway", name: "Org 14 Cart Bag", type: "Golf Bag", hand: "RH", notes: "New", cond: "New", price: 188, qty: 1, img: "" },
-  { brand: "Cobra", name: "Vessel 4 slot", type: "Golf Bag", hand: "RH", notes: "", cond: "", price: 138, qty: 1, img: "" },
-  { brand: "Burton", name: "Vintage Golf Bag", type: "Golf Bag", hand: "RH", notes: "", cond: "", price: 40, qty: 1, img: "" },
-
-  // ── OTHER ──────────────────────────────────────────
-  { brand: "Vectra", name: "Ladies Golf Set", type: "Golf Set", hand: "RH", notes: "Ladies complete set", cond: "", price: 150, qty: 1, img: "" },
-  { brand: "Haywood", name: "100s 4 iron", type: "Driving Iron", hand: "RH", notes: "nippon modus", cond: "", price: 88, qty: 1, img: "" },
-  { brand: "PXG", name: "0311 5 iron", type: "Single Iron", hand: "RH", notes: "Steelfiber shaft", cond: "", price: 65, qty: 1, img: "" },
-
-];
-
-// ╔═══════════════════════════════════════════════════════╗
-// ║  ✅ END OF INVENTORY                                  ║
-// ║  ⚠️  Don't edit anything below this line!             ║
-// ╚═══════════════════════════════════════════════════════╝
-
-INVENTORY.forEach((item,i)=>{item.id=i+1;});
-const A=INVENTORY.filter(i=>i.qty>0);
-let cart=[];
-const $=id=>document.getElementById(id);
-function fmt(n){return"$"+n.toLocaleString();}
-const TE={"Putter":"🏌️","Driver":"💥","Irons Set":"⛳","Wedge":"🎯","Fairway Wood":"🌲","Driver Shaft":"🔧","Headcover":"🧢","Golf Bag":"🎒","Hybrid":"🔀","Shaft":"🔧","Golf Set":"📦","Putter Shaft":"🔧","Driving Iron":"⚡","Single Iron":"1️⃣"};
-
-function init(){
-  const ts=[...new Set(A.map(i=>i.type))].sort(),bs=[...new Set(A.map(i=>i.brand))].sort();
-  ts.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;$('tf').appendChild(o);});
-  bs.forEach(b=>{const o=document.createElement('option');o.value=b;o.textContent=b;$('bf').appendChild(o);});
-  $('sc').textContent=A.reduce((s,i)=>s+i.qty,0)+' items in stock';
+async function loadInventory() {
+  try {
+    ITEMS = await SB.get('inventory', 'active=eq.true&qty=gt.0&order=price.desc');
+    $('loader').style.display = 'none';
+    const ts = [...new Set(ITEMS.map(i => i.type))].sort();
+    const bs = [...new Set(ITEMS.map(i => i.brand))].sort();
+    $('tf').innerHTML = '<option value="All">All Types</option>' + ts.map(t => `<option value="${t}">${t}</option>`).join('');
+    $('bf').innerHTML = '<option value="All">All Brands</option>' + bs.map(b => `<option value="${b}">${b}</option>`).join('');
+    $('sc').textContent = ITEMS.reduce((s, i) => s + i.qty, 0) + ' items in stock';
+    rg();
+  } catch (e) {
+    $('loader').textContent = 'Failed to load inventory. Please refresh.';
+    console.error(e);
+  }
 }
-function gf(){
-  let items=[...A];const s=$('se').value.toLowerCase(),tf=$('tf').value,bf=$('bf').value,hf=$('hf').value,so=$('so').value;
-  if(s) items=items.filter(i=>(i.brand+i.name+i.type+i.notes).toLowerCase().includes(s));
-  if(tf!=='All') items=items.filter(i=>i.type===tf);if(bf!=='All') items=items.filter(i=>i.brand===bf);if(hf!=='All') items=items.filter(i=>i.hand===hf);
-  if(so==='price-desc') items.sort((a,b)=>b.price-a.price);else if(so==='price-asc') items.sort((a,b)=>a.price-b.price);
-  else if(so==='brand') items.sort((a,b)=>a.brand.localeCompare(b.brand));else if(so==='type') items.sort((a,b)=>a.type.localeCompare(b.type));
+
+function gf() {
+  let items = [...ITEMS];
+  const s = $('se').value.toLowerCase(), tf = $('tf').value, bf = $('bf').value, hf = $('hf').value, so = $('so').value;
+  if (s) items = items.filter(i => (i.brand + i.name + i.type + i.notes).toLowerCase().includes(s));
+  if (tf !== 'All') items = items.filter(i => i.type === tf);
+  if (bf !== 'All') items = items.filter(i => i.brand === bf);
+  if (hf !== 'All') items = items.filter(i => i.hand === hf);
+  if (so === 'price-desc') items.sort((a, b) => b.price - a.price);
+  else if (so === 'price-asc') items.sort((a, b) => a.price - b.price);
+  else if (so === 'brand') items.sort((a, b) => a.brand.localeCompare(b.brand));
+  else if (so === 'type') items.sort((a, b) => a.type.localeCompare(b.type));
   return items;
 }
-function bdg(c){return c==='New'?'<span class="bdg bn">New</span>':c==='9/10'?'<span class="bdg b9">9/10</span>':c==='8/10'?'<span class="bdg b8">8/10</span>':'';}
-function rg(){
-  const items=gf(),g=$('pg'),es=$('es');$('rc').textContent=items.length+' items';
-  if(!items.length){g.innerHTML='';es.style.display='block';return;}es.style.display='none';
-  g.innerHTML=items.map(item=>{
-    const ic=cart.find(c=>c.id===item.id),bc=ic?'abtn ic':'abtn',bt=ic?'In Cart ('+ic.qty+')':'Add to Cart';
-    const nt=item.notes&&item.notes!==item.cond&&item.notes!=='NEW'?'<div class="cnt">'+item.notes+'</div>':'';
-    const im=item.img?'<img class="cimg" src="'+item.img+'" alt="'+item.brand+' '+item.name+'" onerror="this.outerHTML=\'<div class=cph>'+(TE[item.type]||'⛳')+'</div>\'">':'<div class="cph">'+(TE[item.type]||'⛳')+'</div>';
-    return '<div class="card">'+im+'<div class="ctop"><div><span class="ctype">'+item.type+'</span>'+(item.hand==='LH'?'<span class="clh">LEFT</span>':'')+'</div><div>'+bdg(item.cond)+(item.qty>1?'<span class="bdg bq">'+item.qty+' avail</span>':'')+'</div></div><div class="cbod"><div class="cbr">'+item.brand+'</div><div class="cnm">'+item.name+'</div>'+nt+'<div class="cbot"><div class="cpr">'+fmt(item.price)+'</div><button class="'+bc+'" onclick="ac('+item.id+')">'+bt+'</button></div></div></div>';
+
+function bdg(c) { return c === 'New' ? '<span class="bdg bn">New</span>' : c === '9/10' ? '<span class="bdg b9">9/10</span>' : c === '8/10' ? '<span class="bdg b8">8/10</span>' : ''; }
+
+function rg() {
+  const items = gf(), g = $('pg'), es = $('es');
+  $('rc').textContent = items.length + ' items';
+  if (!items.length) { g.innerHTML = ''; es.style.display = 'block'; return; }
+  es.style.display = 'none';
+  g.innerHTML = items.map(item => {
+    const ic = cart.find(c => c.id === item.id), bc = ic ? 'abtn ic' : 'abtn', bt = ic ? 'In Cart (' + ic.qty + ')' : 'Add to Cart';
+    const nt = item.notes && item.notes !== item.cond && item.notes !== 'NEW' ? '<div class="cnt">' + item.notes + '</div>' : '';
+    const im = item.img ? '<img class="cimg" src="' + item.img + '" alt="' + item.brand + ' ' + item.name + '" onerror="this.outerHTML=\'<div class=cph>' + (TE[item.type] || '⛳') + '</div>\'">' : '<div class="cph">' + (TE[item.type] || '⛳') + '</div>';
+    const stockClass = item.qty <= 2 ? 'stk low' : 'stk';
+    const stockText = item.qty === 1 ? 'Only 1 left' : item.qty <= 3 ? 'Only ' + item.qty + ' left' : item.qty + ' in stock';
+    return '<div class="card">' + im + '<div class="ctop"><div><span class="ctype">' + item.type + '</span>' + (item.hand === 'LH' ? '<span class="clh">LEFT</span>' : '') + '</div><div>' + bdg(item.cond) + (item.qty > 1 ? '<span class="bdg bq">' + item.qty + ' avail</span>' : '') + '</div></div><div class="cbod"><div class="cbr">' + item.brand + '</div><div class="cnm">' + item.name + '</div>' + nt + '<div class="' + stockClass + '">' + stockText + '</div><div class="cbot"><div class="cpr">' + fmt(item.price) + '</div><button class="' + bc + '" onclick="ac(' + item.id + ')">' + bt + '</button></div></div></div>';
   }).join('');
 }
-function ac(id){const item=A.find(i=>i.id===id),ex=cart.find(c=>c.id===id);if(ex){if(ex.qty<item.qty)ex.qty++;}else cart.push({...item,qty:1});uc();rg();}
-function rc2(id){cart=cart.filter(c=>c.id!==id);uc();rg();}
-function uq(id,d){const c=cart.find(c=>c.id===id);if(!c)return;const m=A.find(i=>i.id===id).qty,n=c.qty+d;if(n<1||n>m)return;c.qty=n;uc();rg();}
-function cc2(){return cart.reduce((s,c)=>s+c.qty,0);}
-function ct2(){return cart.reduce((s,c)=>s+c.price*c.qty,0);}
-function uc(){
-  const n=cc2(),t=ct2();$('cc').textContent=n;$('ct').textContent='Your Cart ('+n+')';
-  if(!n){$('cdi').innerHTML='<div class="cem">🛒<br><br>Your cart is empty</div>';$('cdf').style.display='none';$('fc').style.display='none';return;}
-  $('cdf').style.display='block';$('ctp').textContent=fmt(t);$('fc').style.display='flex';$('ft').textContent=fmt(t);$('fn').textContent=n;
-  $('cdi').innerHTML=cart.map(c=>'<div class="ci"><div class="cii"><div class="cib">'+c.brand+'</div><div class="cin">'+c.name+'</div><div class="cim">'+c.type+' · '+c.hand+'</div></div><div class="qc"><button class="qb" onclick="uq('+c.id+',-1)">−</button><span class="qn">'+c.qty+'</span><button class="qb" onclick="uq('+c.id+',1)">+</button></div><div class="cip">'+fmt(c.price*c.qty)+'</div><button class="cir" onclick="rc2('+c.id+')">✕</button></div>').join('');
+
+function ac(id) {
+  const item = ITEMS.find(i => i.id === id);
+  if (!item) return;
+  const ex = cart.find(c => c.id === id);
+  if (ex) { if (ex.qty < item.qty) ex.qty++; }
+  else cart.push({ ...item, qty: 1 });
+  uc(); rg();
 }
-function toggleCart(){$('cd').classList.toggle('open');$('ov').classList.toggle('open');}
-
-let sm='local';
-function orderSummaryHTML(){return cart.map(c=>'<div class="ol"><div><div style="font-weight:600;color:#1a5c38">'+c.brand+' '+c.name+'</div><div style="color:#78a088;font-size:11px">'+c.type+' · '+c.hand+(c.qty>1?' × '+c.qty:'')+'</div></div><div style="font-weight:700;color:#1a5c38">'+fmt(c.price*c.qty)+'</div></div>').join('');}
-function orderTextSummary(){return cart.map(c=>c.brand+' '+c.name+' ('+c.type+', '+c.hand+')'+(c.qty>1?' x'+c.qty:'')+' — '+fmt(c.price*c.qty)).join('\n');}
-
-function paymentLinksHTML(total){
-  let html='<div class="pay-options">';
-  if(SETTINGS.paypal) html+='<a href="'+SETTINGS.paypal+'/'+total+'" target="_blank" class="pay-btn pay-paypal">💳 Pay with PayPal — '+fmt(total)+'</a>';
-  if(SETTINGS.venmo) html+='<a href="'+SETTINGS.venmo+'?txn=pay&amount='+total+'" target="_blank" class="pay-btn pay-venmo">Pay with Venmo</a>';
-  if(SETTINGS.zelle) html+='<span class="pay-btn pay-zelle" style="cursor:default">Zelle: '+SETTINGS.zelle+'</span>';
-  html+='</div>';
-  return html;
+function rc2(id) { cart = cart.filter(c => c.id !== id); uc(); rg(); }
+function uq(id, d) {
+  const c = cart.find(c => c.id === id); if (!c) return;
+  const m = ITEMS.find(i => i.id === id)?.qty || 1;
+  const n = c.qty + d; if (n < 1 || n > m) return;
+  c.qty = n; uc(); rg();
 }
+function cc2() { return cart.reduce((s, c) => s + c.qty, 0); }
+function ct2() { return cart.reduce((s, c) => s + c.price * c.qty, 0); }
 
-function goCheckout(){
-  toggleCart();$('sp').style.display='none';$('fc').style.display='none';
-  const t=ct2();
-  $('mc').insertAdjacentHTML('beforeend',`
-    <div class="cop" id="cop">
-      <button class="bbk" onclick="bts()">← Back to Shop</button>
-      <h2 style="font-size:28px;margin-bottom:24px">Checkout</h2>
-      <div class="cog">
-        <div class="coc">
-          <h3>Order Summary</h3>
-          ${orderSummaryHTML()}
-          <div class="otr"><span style="font-size:18px;font-weight:800">Total</span><span style="font-size:22px;font-weight:900">${fmt(t)}</span></div>
-        </div>
-        <div class="coc">
-          <h3>Your Info</h3>
-          <div class="fg"><label>Name *</label><input id="cn"></div>
-          <div class="fg"><label>Email *</label><input id="ce" type="email"></div>
-          <div class="fg"><label>Phone</label><input id="cp" type="tel"></div>
-          <div class="fg"><label>Pickup or Ship?</label>
-            <div class="mbs">
-              <button class="mb act" id="bl" onclick="sme('local')">📍 Local Pickup</button>
-              <button class="mb" id="bs" onclick="sme('ship')">📦 Ship to Me</button>
-            </div>
-          </div>
-          <div class="fg"><label>Notes (optional)</label><textarea id="cno" rows="2" placeholder="Questions, pickup times, etc."></textarea></div>
-          <div class="errmsg" id="errmsg"></div>
-          <button class="sub" id="subbtn" onclick="so2()">Place Order & Pay</button>
-          <div style="font-size:11px;color:var(--faint);margin-top:8px;text-align:center;font-family:'DM Sans',sans-serif">
-            You'll be directed to PayPal to complete payment after placing your order.
-          </div>
-        </div>
-      </div>
-    </div>`);
+function uc() {
+  const n = cc2(), t = ct2();
+  $('cc').textContent = n; $('ct').textContent = 'Your Cart (' + n + ')';
+  if (!n) { $('cdi').innerHTML = '<div class="cem">🛒<br><br>Your cart is empty</div>'; $('cdf').style.display = 'none'; $('fc').style.display = 'none'; return; }
+  $('cdf').style.display = 'block'; $('ctp').textContent = fmt(t); $('fc').style.display = 'flex'; $('ft').textContent = fmt(t); $('fn').textContent = n;
+  $('cdi').innerHTML = cart.map(c => '<div class="ci"><div class="cii"><div class="cib">' + c.brand + '</div><div class="cin">' + c.name + '</div><div class="cim">' + c.type + ' · ' + c.hand + '</div></div><div class="qc"><button class="qb" onclick="uq(' + c.id + ',-1)">−</button><span class="qn">' + c.qty + '</span><button class="qb" onclick="uq(' + c.id + ',1)">+</button></div><div class="cip">' + fmt(c.price * c.qty) + '</div><button class="cir" onclick="rc2(' + c.id + ')">✕</button></div>').join('');
 }
+function toggleCart() { $('cd').classList.toggle('open'); $('ov').classList.toggle('open'); }
 
-function sme(m){sm=m;$('bl').classList.toggle('act',m==='local');$('bs').classList.toggle('act',m==='ship');}
-function bts(){const p=$('cop');if(p)p.remove();$('sp').style.display='block';$('fc').style.display=cc2()?'flex':'none';}
+let sm = 'local';
+function goCheckout() {
+  toggleCart(); $('sp').style.display = 'none'; $('fc').style.display = 'none';
+  const t = ct2();
+  $('mc').insertAdjacentHTML('beforeend', `<div class="cop" id="cop"><button class="bbk" onclick="bts()">← Back to Shop</button><h2 style="font-size:28px;margin-bottom:24px">Checkout</h2><div class="cog"><div class="coc"><h3>Order Summary</h3>${cart.map(c => '<div class="ol"><div><div style="font-weight:600;color:#1a5c38">' + c.brand + ' ' + c.name + '</div><div style="color:#78a088;font-size:11px">' + c.type + ' · ' + c.hand + (c.qty > 1 ? ' × ' + c.qty : '') + '</div></div><div style="font-weight:700;color:#1a5c38">' + fmt(c.price * c.qty) + '</div></div>').join('')}<div class="otr"><span style="font-size:18px;font-weight:800">Total</span><span style="font-size:22px;font-weight:900">${fmt(t)}</span></div></div><div class="coc"><h3>Your Info</h3><div class="fg"><label>Name *</label><input id="cn"></div><div class="fg"><label>Email *</label><input id="ce" type="email"></div><div class="fg"><label>Phone</label><input id="cp" type="tel"></div><div class="fg"><label>Pickup or Ship?</label><div class="mbs"><button class="mb act" id="bl" onclick="sme('local')">📍 Local Pickup</button><button class="mb" id="bs" onclick="sme('ship')">📦 Ship to Me</button></div></div><div class="fg"><label>Notes (optional)</label><textarea id="cno" rows="2" placeholder="Questions, pickup times, etc."></textarea></div><div class="errmsg" id="errmsg"></div><button class="sub" id="subbtn" onclick="so2()">Place Order & Pay</button><div style="font-size:11px;color:var(--faint);margin-top:8px;text-align:center;font-family:'DM Sans',sans-serif">You'll be directed to PayPal after placing your order.</div></div></div></div>`);
+}
+function sme(m) { sm = m; $('bl').classList.toggle('act', m === 'local'); $('bs').classList.toggle('act', m === 'ship'); }
+function bts() { const p = $('cop'); if (p) p.remove(); $('sp').style.display = 'block'; $('fc').style.display = cc2() ? 'flex' : 'none'; }
 
-async function so2(){
-  const name=$('cn').value.trim(),email=$('ce').value.trim(),phone=$('cp').value.trim(),notes=$('cno').value.trim();
-  const errEl=$('errmsg');errEl.style.display='none';
+async function so2() {
+  const name = $('cn').value.trim(), email = $('ce').value.trim(), phone = $('cp').value.trim(), notes = $('cno').value.trim();
+  const errEl = $('errmsg'); errEl.style.display = 'none';
+  if (!name || !email) { errEl.textContent = 'Please enter your name and email.'; errEl.style.display = 'block'; return; }
+  if (!email.includes('@')) { errEl.textContent = 'Please enter a valid email.'; errEl.style.display = 'block'; return; }
 
-  if(!name||!email){errEl.textContent='Please enter your name and email.';errEl.style.display='block';return;}
-  if(!email.includes('@')){errEl.textContent='Please enter a valid email address.';errEl.style.display='block';return;}
+  const btn = $('subbtn'); btn.textContent = 'Processing...'; btn.classList.add('ld');
+  const total = ct2();
+  const orderItems = cart.map(c => ({ id: c.id, brand: c.brand, name: c.name, type: c.type, hand: c.hand, price: c.price, qty: c.qty }));
 
-  const btn=$('subbtn');btn.textContent='Sending...';btn.classList.add('loading');
-
-  const total=ct2();
-  const orderData={
-    name:name, email:email, phone:phone||'N/A',
-    method:sm==='local'?'Local Pickup':'Shipped',
-    notes:notes||'None',
-    order_total:fmt(total),
-    items:orderTextSummary(),
-    _subject:'🏌️ New Flipped Sticks Order — '+fmt(total)+' from '+name,
-  };
-
-  try{
-    const resp=await fetch(SETTINGS.formspree,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(orderData)});
-    if(!resp.ok) throw new Error('Form submission failed');
-  }catch(e){
-    console.error(e);
-    // Still show confirmation even if email fails — don't lose the sale
+  // 1. Decrement inventory in Supabase
+  for (const c of cart) {
+    const item = ITEMS.find(i => i.id === c.id);
+    if (item) {
+      const newQty = Math.max(0, item.qty - c.qty);
+      await SB.patch('inventory', c.id, { qty: newQty });
+      item.qty = newQty; // update local cache
+    }
   }
 
-  // Show confirmation with payment links
-  const cp=$('cop');if(cp)cp.remove();
-  const payLinks=paymentLinksHTML(total);
-  $('mc').insertAdjacentHTML('beforeend',`
-    <div class="cfp" id="cfp"><div class="cfb">
-      <div style="font-size:48px">✅</div>
-      <h2>Order Placed!</h2>
-      <p>Thanks ${name}! Your order has been sent to Flipped Sticks. ${sm==='local'?'We\'ll reach out to arrange local pickup in the Minneapolis area.':'We\'ll email you at <strong>'+email+'</strong> with shipping details and cost.'}</p>
-      <div class="pay-section">
-        <h4>💰 Complete Your Payment</h4>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'DM Sans',sans-serif">
-          ${sm==='local'?'Pay now online or bring cash/Venmo/Zelle to pickup.':'Please send payment to confirm your order.'}
-        </p>
-        ${payLinks}
-      </div>
-      <div class="cfs" style="margin-top:16px">
-        <div style="font-weight:700;color:#1a5c38;margin-bottom:8px">Order Summary</div>
-        ${cart.map(c=>'<div style="display:flex;justify-content:space-between;font-size:13px;color:#3e7a55;padding:4px 0"><span>'+c.brand+' '+c.name+(c.qty>1?' (×'+c.qty+')':'')+'</span><span>'+fmt(c.price*c.qty)+'</span></div>').join('')}
-        <div style="border-top:2px solid #2d8a56;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-weight:800;color:#1a5c38;font-size:16px"><span>Total</span><span>${fmt(total)}</span></div>
-      </div>
-      <button class="bsb" onclick="location.reload()">Back to Shop</button>
-    </div></div>`);
+  // 2. Save order to Supabase
+  await SB.post('orders', {
+    customer_name: name, customer_email: email, customer_phone: phone || '',
+    method: sm === 'local' ? 'Local Pickup' : 'Shipped',
+    notes: notes || '', items: orderItems, total: total, status: 'pending'
+  });
+
+  // 3. Send email via Formspree
+  try {
+    await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name, email, phone: phone || 'N/A',
+        method: sm === 'local' ? 'Local Pickup' : 'Shipped',
+        notes: notes || 'None', order_total: fmt(total),
+        items: cart.map(c => c.brand + ' ' + c.name + (c.qty > 1 ? ' x' + c.qty : '') + ' — ' + fmt(c.price * c.qty)).join('\n'),
+        _subject: '🏌️ New Order — ' + fmt(total) + ' from ' + name
+      })
+    });
+  } catch (e) { console.error('Formspree error:', e); }
+
+  // 4. Show confirmation
+  const cp = $('cop'); if (cp) cp.remove();
+  let payHTML = '<div class="pay-options">';
+  if (PAYPAL) payHTML += '<a href="' + PAYPAL + '/' + total + '" target="_blank" class="pay-btn pay-paypal">💳 Pay with PayPal — ' + fmt(total) + '</a>';
+  payHTML += '</div>';
+
+  $('mc').insertAdjacentHTML('beforeend', `<div class="cfp" id="cfp"><div class="cfb"><div style="font-size:48px">✅</div><h2>Order Placed!</h2><p>Thanks ${name}! Your order has been sent. ${sm === 'local' ? "We'll reach out to arrange pickup in Minneapolis." : "We'll email you at <strong>" + email + "</strong> with shipping details."}</p><div class="pay-section"><h4>💰 Complete Your Payment</h4><p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'DM Sans',sans-serif">${sm === 'local' ? 'Pay now online or bring cash to pickup.' : 'Please send payment to confirm your order.'}</p>${payHTML}</div><div class="cfs" style="margin-top:16px"><div style="font-weight:700;color:#1a5c38;margin-bottom:8px">Order Summary</div>${cart.map(c => '<div style="display:flex;justify-content:space-between;font-size:13px;color:#3e7a55;padding:4px 0"><span>' + c.brand + ' ' + c.name + (c.qty > 1 ? ' (×' + c.qty + ')' : '') + '</span><span>' + fmt(c.price * c.qty) + '</span></div>').join('')}<div style="border-top:2px solid #2d8a56;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-weight:800;color:#1a5c38;font-size:16px"><span>Total</span><span>${fmt(total)}</span></div></div><button class="bsb" onclick="location.reload()">Back to Shop</button></div></div>`);
+  cart = [];
 }
 
-init();rg();uc();
+loadInventory();
+uc();
 </script>
 </body>
 </html>
