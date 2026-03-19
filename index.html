@@ -71,6 +71,8 @@ header{background:linear-gradient(135deg,var(--dk),var(--mg),var(--lg));position
 .bsb{background:var(--mg);color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
 .pay-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .15s;border:none;}
 .pay-paypal{background:#0070ba;color:#fff;}.pay-paypal:hover{background:#005ea6;}
+.pay-venmo{background:#3d95ce;color:#fff;}.pay-venmo:hover{background:#2d7fb8;}
+.pay-zelle{background:#6d1ed4;color:#fff;display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;font-family:'DM Sans',sans-serif;}
 .pay-section{background:#f7fbf8;border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:16px;}
 .pay-section h4{font-size:14px;color:var(--mg);margin-bottom:12px;}
 .pay-options{display:flex;gap:10px;flex-wrap:wrap;}
@@ -118,7 +120,7 @@ footer{margin-top:48px;padding:24px 0;border-top:1px solid var(--border);text-al
 <div id="mc">
   <div style="max-width:1200px;margin:0 auto;padding:24px" id="sp">
     <div class="hero"><h2>Shop the Collection</h2><p>Premium pre-owned and new golf clubs. Local pickup in Minneapolis or shipped nationwide.</p>
-      <div class="htags"><span class="htag" id="sc"></span><span class="htag">600+ clubs sold</span><span class="htag">Trusted since 2023</span></div></div>
+      <div class="htags"><span class="htag" id="sc"></span><span class="htag">588+ clubs flipped</span><span class="htag">Trusted since 2023</span></div></div>
     <div class="fil">
       <div class="sw"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="text" id="se" placeholder="Search clubs..." oninput="rg()"></div>
       <select id="tf" onchange="rg()"><option value="All">All Types</option></select>
@@ -146,7 +148,7 @@ const SUPABASE_URL = "https://izmgscqvoiqjadqerazo.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml6bWdzY3F2b2lxamFkcWVyYXpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NDE5ODgsImV4cCI6MjA4OTUxNzk4OH0.IoxhwUABl-AbRhZl6iJqQX0BzUPQi54jwS86rdX3z3g";
 const FORMSPREE = "https://formspree.io/f/xkoqyvqo";
 const PAYPAL = "https://paypal.me/lukelab";
-const VENMO = "https://venmo.com/luke-labounty";
+const VENMO = "https://venmo.com/Luke-LaBounty";
 const ZELLE = "labountyl24@gmail.com";
 
 // ╔════════════════════════════════════════════════════════════╗
@@ -395,8 +397,10 @@ async function so2() {
 
   // 4. Show confirmation
   const cp = $('cop'); if (cp) cp.remove();
-  let payHTML = '<div class="pay-options">';
-  if (PAYPAL) payHTML += '<a href="' + PAYPAL + '/' + total + '" target="_blank" class="pay-btn pay-paypal">💳 Pay with PayPal — ' + fmt(total) + '</a>';
+  let payHTML = '<div class="pay-options" style="display:flex;gap:10px;flex-wrap:wrap">';
+  if (PAYPAL) payHTML += '<a href="' + PAYPAL + '/' + total + '" target="_blank" class="pay-btn pay-paypal">💳 PayPal — ' + fmt(total) + '</a>';
+  if (VENMO) payHTML += '<a href="' + VENMO + '?txn=pay&amount=' + total + '&note=Flipped+Sticks+Order" target="_blank" class="pay-btn pay-venmo">📱 Venmo — ' + fmt(total) + '</a>';
+  if (ZELLE) payHTML += '<span class="pay-zelle">⚡ Zelle: ' + ZELLE + '</span>';
   payHTML += '</div>';
 
   $('mc').insertAdjacentHTML('beforeend', `<div class="cfp" id="cfp"><div class="cfb"><div style="font-size:48px">✅</div><h2>Order Placed!</h2><p>Thanks ${name}! Your order has been sent. ${sm === 'local' ? "We'll reach out to arrange pickup in Minneapolis." : "We'll email you at <strong>" + email + "</strong> with shipping details."}</p><div class="pay-section"><h4>💰 Complete Your Payment</h4><p style="font-size:12px;color:var(--muted);margin-bottom:12px;font-family:'DM Sans',sans-serif">${sm === 'local' ? 'Pay now online or bring cash to pickup.' : 'Please send payment to confirm your order.'}</p>${payHTML}</div><div class="cfs" style="margin-top:16px"><div style="font-weight:700;color:#1a5c38;margin-bottom:8px">Order Summary</div>${cart.map(c => '<div style="display:flex;justify-content:space-between;font-size:13px;color:#3e7a55;padding:4px 0"><span>' + c.brand + ' ' + c.name + (c.qty > 1 ? ' (×' + c.qty + ')' : '') + '</span><span>' + fmt(c.price * c.qty) + '</span></div>').join('')}<div style="border-top:2px solid #2d8a56;margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-weight:800;color:#1a5c38;font-size:16px"><span>Total</span><span>${fmt(total)}</span></div></div><button class="bsb" onclick="location.reload()">Back to Shop</button></div></div>`);
